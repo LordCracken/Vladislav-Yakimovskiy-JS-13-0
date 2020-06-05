@@ -13,4 +13,4 @@ console.log(mathProduct);
 mathProduct **= 3; // В стандарте ES6 выдаёт предупреждение, изменил стандарт на ES7
 console.log(mathProduct);
 // Вывод первых двух цифр
-console.log(String(mathProduct).substr(0, 2)); // Данные в виде строки, можно перевести в тип number с помощью метода
+alert(String(mathProduct).substr(0, 2)); // Данные в виде строки, можно перевести в тип number с помощью метода
