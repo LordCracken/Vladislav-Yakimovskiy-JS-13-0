@@ -1,16 +1,13 @@
-let num = 266219,
-  divider = 10,
-  mathProduct = 1;
-  
-for (let i = 0; i < String(num).length; i++) {
-  mathProduct *= Math.floor((num % divider / (divider / 10)));
-  divider *= 10;
-}
+'use strict';
+const num = 266219;
+let digitsMultiplication,
+  exponentiation;
 
-// Выводы произведения цифр числа в num
-console.log(mathProduct);
-// Возведение в степень
-mathProduct **= 3; // В стандарте ES6 выдаёт предупреждение, изменил стандарт на ES7
-console.log(mathProduct);
-// Вывод первых двух цифр
-alert(String(mathProduct).substr(0, 2)); // Данные в виде строки, можно перевести в тип number с помощью метода
+  digitsMultiplication = String(num).split('').reduce((multiplication, current) => {
+  return multiplication * current;
+});
+
+console.log(digitsMultiplication);
+exponentiation = digitsMultiplication ** 3; // В стандарте ES6 выдаёт предупреждение, изменил стандарт на ES7
+console.log(exponentiation);
+alert(String(exponentiation).substr(0, 2));
