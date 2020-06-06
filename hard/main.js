@@ -3,7 +3,7 @@ const num = 266219;
 let digitsMultiplication,
   exponentiation;
 
-  digitsMultiplication = String(num).split('').reduce((multiplication, current) => {
+digitsMultiplication = String(num).split('').reduce((multiplication, current) => {
   return multiplication * current;
 });
 
