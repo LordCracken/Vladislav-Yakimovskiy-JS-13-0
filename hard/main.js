@@ -8,8 +8,10 @@ const lang = confirm('Ваш язык - русский? Your language is Russian
 
 if (lang === 'ru') {
   console.log(weekDays.get('ru'));
-} else {
+} else if (lang === 'en') {
   console.log(weekDays.get('en'));
+} else {
+  console.log('Вашего языка нет в базе данных');
 }
 
 switch (lang) {
@@ -19,6 +21,8 @@ switch (lang) {
   case 'en':
     console.log(weekDays.get('en'));
     break;
+  default:
+    console.log('Вашего языка нет в базе данных');   
 }
 
 console.log(weekDays.get(lang));
