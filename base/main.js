@@ -26,24 +26,24 @@ function getTargetMonth(mission, accumulatedMonth) {
   return mission / accumulatedMonth;
 }
 
-let showTypeOf = (data) => {
-  return (data + ' ' + typeof data);
-};
+const showTypeOf = (data) => {
+    return (data + ' ' + typeof data);
+  },
 
-const accumulatedMonth = getAccumulatedMonth(money, getExpensesMonth(amount1, amount2)),
-  budgetDay = Math.floor(accumulatedMonth / 30);
+  accumulatedMonth = getAccumulatedMonth(money, getExpensesMonth(amount1, amount2)),
+  budgetDay = Math.floor(accumulatedMonth / 30),
 
-let getStatusIncome = (budgetDay) => { // Локальные переменные имеют бОльший приоритет, чем глобальные
-  if (budgetDay > 1200) {
-    return ('У вас высокий уровень дохода');
-  } else if (budgetDay > 600 && budgetDay <= 1200) {
-    return ('У вас средний уровень дохода');
-  } else if (budgetDay <= 600 && budgetDay >= 0) {
-    return ('К сожалению у вас уровень дохода ниже среднего');
-  } else {
-    return ('Что-то пошло не так');
-  }
-};
+  getStatusIncome = (budgetDay) => { // Локальные переменные имеют бОльший приоритет, чем глобальные
+    if (budgetDay > 1200) {
+      return ('У вас высокий уровень дохода');
+    } else if (budgetDay > 600 && budgetDay <= 1200) {
+      return ('У вас средний уровень дохода');
+    } else if (budgetDay <= 600 && budgetDay >= 0) {
+      return ('К сожалению у вас уровень дохода ниже среднего');
+    } else {
+      return ('Что-то пошло не так');
+    }
+  };
 
 console.log(accumulatedMonth);
 
