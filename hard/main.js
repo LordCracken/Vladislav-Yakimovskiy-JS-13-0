@@ -1,29 +1,23 @@
 'use strict';
-// Часть 1
-const lang = confirm('Ваш язык - русский? Your language is Russian?') ? 'ru' : 'en',
-  weekDays = new Map ([
-    ['ru', ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье']],
-    ['en', ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']]
-  ]);
+const message = prompt('Введите сообщение'),
+  number = 5,
+  boolean = true,
+  outputMessage = (message) => {
+    let result = '';
+    if (typeof message !== 'string') {
+      result = 'Сообщение не является строкой';
+    } else {
+      for (const char of message) {
+        if (result.length === 30) {
+          result += '...';
+          break;
+        }
+          result += char;
+      }
+    }
+    return result.trim();
+  };
 
-if (lang === 'ru') {
-  console.log(weekDays.get('ru'));
-} else {
-  console.log(weekDays.get('en'));
-}
-
-switch (lang) {
-  case 'ru':
-    console.log(weekDays.get('ru'));
-    break;
-  case 'en':
-    console.log(weekDays.get('en'));
-    break;
-}
-
-console.log(weekDays.get(lang));
-
-// Часть 2
-const namePerson = prompt('Введите имя', 'Артём');
-
-console.log(namePerson === 'Артём' ? 'Директор' : namePerson === 'Максим' ? 'Преподаватель' : 'Студент');
+console.log(outputMessage(message));
+console.log(outputMessage(number));
+console.log(outputMessage(boolean));
