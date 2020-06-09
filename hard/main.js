@@ -1,13 +1,29 @@
 'use strict';
-const num = 266219;
-let digitsMultiplication,
-  exponentiation;
+// Часть 1
+const lang = confirm('Ваш язык - русский? Your language is Russian?') ? 'ru' : 'en',
+  weekDays = new Map ([
+    ['ru', ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье']],
+    ['en', ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']]
+  ]);
 
-digitsMultiplication = String(num).split('').reduce((multiplication, current) => {
-  return multiplication * current;
-});
+if (lang === 'ru') {
+  console.log(weekDays.get('ru'));
+} else {
+  console.log(weekDays.get('en'));
+}
 
-console.log(digitsMultiplication);
-exponentiation = digitsMultiplication ** 3; // В стандарте ES6 выдаёт предупреждение, изменил стандарт на ES7
-console.log(exponentiation);
-alert(String(exponentiation).substr(0, 2));
+switch (lang) {
+  case 'ru':
+    console.log(weekDays.get('ru'));
+    break;
+  case 'en':
+    console.log(weekDays.get('en'));
+    break;
+}
+
+console.log(weekDays.get(lang));
+
+// Часть 2
+const namePerson = prompt('Введите имя', 'Артём');
+
+console.log(namePerson === 'Артём' ? 'Директор' : namePerson === 'Максим' ? 'Преподаватель' : 'Студент');
