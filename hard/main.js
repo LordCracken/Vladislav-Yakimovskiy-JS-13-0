@@ -4,18 +4,13 @@ const message = prompt('Введите сообщение'),
   boolean = true,
   outputMessage = (message) => {
     let result = '';
-    if (typeof message !== 'string') {
+    if (typeof message !== 'string' || !isNaN(+message)) {
       result = 'Сообщение не является строкой';
     } else {
-      for (const char of message) {
-        if (result.length === 30) {
-          result += '...';
-          break;
-        }
-          result += char;
-      }
+      result = message.trim();
+      if (result.length > 30) {result = result.slice(0, 30) + '...';}
     }
-    return result.trim();
+    return result;
   };
 
 console.log(outputMessage(message));
