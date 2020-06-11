@@ -1,31 +1,52 @@
 'use strict';
 const isNumber = (n) => {
-  return !isNaN(parseFloat(n)) && isFinite(n);
-};
+    return !isNaN(parseFloat(n)) && isFinite(n);
+  },
 
-// Часть 1
-let arr = [];
+  guessTheNumber = () => {
+    let number = Math.floor(Math.random() * 100) + 1,
+      attempts = 10;
 
-for (let i = 0; i < 7; i++) {
-  do {
-    arr[i] = prompt('Введите число');
-  } while (!isNumber(arr[i]));
-  if (arr[i][0] === '2' || arr[i][0] === '4') {
-    console.log(arr[i]);
-  }
-}
+    alert('Угадай число от 1 до 100');
 
-// Часть 2
-for (let i = 1; i < 101; i++) {
-  let simpleNum = true;
-  for (let j = 2; j < i; j++) {
-    if (i % j === 0) {
-      simpleNum = false;
-      break;
+    function checkType() {
+      let usersNumber = prompt('Введи число!');
+
+      function checkNumber() {
+        if (attempts === 1) {
+          if (confirm('Попытки закончились, хотите сыграть еще?')) {
+            guessTheNumber();
+          } else {
+            return;
+          }
+        } 
+
+        if (+usersNumber > number) {
+          attempts--;
+          alert('Загаданное число меньше, осталось попыток: ' + attempts);
+          checkType();
+        } else if (+usersNumber < number) {
+          attempts--;
+          alert('Загаданное число больше, осталось попыток: ' + attempts);
+          checkType();
+        } else {
+          alert('Вы угадали!');
+          if (confirm('Сыграем ещё?')) {
+            guessTheNumber();
+          }
+        }
+      }
+
+      if (!isNumber(+usersNumber) || usersNumber === '') {
+        checkType();
+      } else if (usersNumber === null) {
+        return;
+      } else {
+        checkNumber();
+      }
     }
-  }
 
-  if (simpleNum) {
-    console.log(i);
-  }
-}
+    checkType();
+  };
+
+guessTheNumber();
