@@ -1,18 +1,31 @@
 'use strict';
-const message = prompt('Введите сообщение'),
-  number = 5,
-  boolean = true,
-  outputMessage = (message) => {
-    let result = '';
-    if (typeof message !== 'string' || !isNaN(+message)) {
-      result = 'Сообщение не является строкой';
-    } else {
-      result = message.trim();
-      if (result.length > 30) {result = result.slice(0, 30) + '...';}
-    }
-    return result;
-  };
+const isNumber = (n) => {
+  return !isNaN(parseFloat(n)) && isFinite(n);
+};
 
-console.log(outputMessage(message));
-console.log(outputMessage(number));
-console.log(outputMessage(boolean));
+// Часть 1
+let arr = [];
+
+for (let i = 0; i < 7; i++) {
+  do {
+    arr[i] = prompt('Введите число');
+  } while (!isNumber(arr[i]));
+  if (arr[i][0] === '2' || arr[i][0] === '4') {
+    console.log(arr[i]);
+  }
+}
+
+// Часть 2
+for (let i = 1; i < 101; i++) {
+  let simpleNum = true;
+  for (let j = 2; j < i; j++) {
+    if (i % j === 0) {
+      simpleNum = false;
+      break;
+    }
+  }
+
+  if (simpleNum) {
+    console.log(i);
+  }
+}
