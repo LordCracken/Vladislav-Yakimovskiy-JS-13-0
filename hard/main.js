@@ -10,10 +10,13 @@ for (let i = 0; i < 7; i++) {
   do {
     arr[i] = prompt('Введите число');
   } while (!isNumber(arr[i]));
-  if (arr[i][0] === '2' || arr[i][0] === '4') {
-    console.log(arr[i]);
-  }
 }
+
+arr.filter((number) => {
+  if (number[0] === '2' || number[0] === '4') {
+    console.log(number);
+  }
+});
 
 // Часть 2
 for (let i = 1; i < 101; i++) {
