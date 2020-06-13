@@ -1,52 +1,16 @@
 'use strict';
-const isNumber = (n) => {
-    return !isNaN(parseFloat(n)) && isFinite(n);
-  },
+const week = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'],
+  weekList = document.getElementById('week-list'),
+  date = new Date();
 
-  guessTheNumber = () => {
-    let number = Math.floor(Math.random() * 100) + 1,
-      attempts = 10;
+week.forEach((item, i, week) => {
+  if (i > 4) {
+    item = item.italics();
+  }
 
-    alert('Угадай число от 1 до 100');
+  if (i + 1 === date.getDay() || (i === 6 && date.getDay() === 0)) {
+    item = item.bold();
+  }
 
-    function checkType() {
-      let usersNumber = prompt('Введи число!');
-
-      function checkNumber() {
-        if (attempts === 1) {
-          if (confirm('Попытки закончились, хотите сыграть еще?')) {
-            guessTheNumber();
-          } else {
-            return;
-          }
-        } 
-
-        if (+usersNumber > number) {
-          attempts--;
-          alert('Загаданное число меньше, осталось попыток: ' + attempts);
-          checkType();
-        } else if (+usersNumber < number) {
-          attempts--;
-          alert('Загаданное число больше, осталось попыток: ' + attempts);
-          checkType();
-        } else {
-          alert('Вы угадали!');
-          if (confirm('Сыграем ещё?')) {
-            guessTheNumber();
-          }
-        }
-      }
-
-      if (!isNumber(+usersNumber) || usersNumber === '') {
-        checkType();
-      } else if (usersNumber === null) {
-        return;
-      } else {
-        checkNumber();
-      }
-    }
-
-    checkType();
-  };
-
-guessTheNumber();
+  weekList.insertAdjacentHTML('beforeend', '<li>' + item + '</li>');
+});
