@@ -3,14 +3,15 @@ const week = ['Понедельник', 'Вторник', 'Среда', 'Чет�
   weekList = document.getElementById('week-list'),
   date = new Date();
 
-week.forEach((item, i, week) => {
-  if (i > 4) {
-    item = item.italics();
+week.forEach((item, i) => {
+  let weekItem = document.createElement('li');
+  weekItem.textContent = item;
+  if (item === 'Суббота' || item === 'Воскресенье') {
+    weekItem.classList.add('day-of-rest');
   }
 
   if (i + 1 === date.getDay() || (i === 6 && date.getDay() === 0)) {
-    item = item.bold();
+    weekItem.classList.add('today');
   }
-
-  weekList.insertAdjacentHTML('beforeend', '<li>' + item + '</li>');
+  weekList.appendChild(weekItem);
 });
