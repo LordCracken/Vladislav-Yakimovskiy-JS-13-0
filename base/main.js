@@ -10,12 +10,10 @@ const
       money = prompt('Ваш месячный доход?');
     } while (!isNumber(money));
     return money;
-  },
+  };
 
-  money = +start();
-
-let appData = {
-  budget: money,
+const appData = {
+  budget: +start(),
   income: {},
   addIncome: [],
   expenses: {},
@@ -27,8 +25,8 @@ let appData = {
   mission: 100000,
   period: 3,
   asking: function () {
-    let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую'),
-      expensesName,
+    const addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую');
+    let expensesName,
       expensesCost;
 
     appData.addExpenses = addExpenses.toLowerCase().split(', ');
@@ -72,9 +70,7 @@ let appData = {
 
   showAllProps: () => {
     for (let prop in appData) {
-      if (typeof appData[prop] !== 'function') {
-        console.log(prop + ': ', appData[prop]);
-      }
+      console.log(prop + ': ', appData[prop]);
     }
   }
 };
