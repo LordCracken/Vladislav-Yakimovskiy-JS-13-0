@@ -4,10 +4,30 @@ const
     return !isNaN(parseFloat(n)) && isFinite(n);
   },
 
+  numValidate = (message, errorMessage, defaultValue) => {
+    let output = prompt(message, defaultValue);
+    if (!isNumber(output)) {
+      do {
+        output = prompt(errorMessage, defaultValue);
+      } while (!isNumber(output));
+    }
+    return +output;
+  },
+
+  stringValidate = (message, errorMessage, defaultValue) => {
+    let output = prompt(message, defaultValue);
+    if (isNumber(output) || output === '') {
+      do {
+        output = prompt(errorMessage, defaultValue);
+      } while (isNumber(output) || output === '');
+    }
+    return output;
+  },
+
   start = () => { // Слегка изменил функцию из урока, чтобы она была чистой
     let money;
     do {
-      money = prompt('Ваш месячный доход?');
+      money = prompt('Ваш месячный доход?', '50000');
     } while (!isNumber(money));
     return money;
   };
@@ -22,10 +42,23 @@ const appData = {
   budgetMonth: 0,
   expensesMonth: 0,
   deposit: false,
+  percentDeposit: 0,
+  moneyDeposit: 0,
   mission: 100000,
   period: 3,
   asking: function () {
-    const addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую');
+
+    if (confirm('Есть ли у вас дополнительный заработок?')) {
+      const itemIncome = stringValidate('Какой у вас дополнительный заработок?',
+          'Данные должны быть строкой! Какой у вас дополнительный заработок?',
+          'Фриланс'),
+        cashIncome = numValidate('Сколько в месяц вы на этом зарабатываете?',
+          'Данные должны быть числом! Сколько в месяц вы на этом зарабатываете?',
+          '20000');
+      appData.income[itemIncome] = cashIncome;
+    }
+
+    const addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую', 'Кино, Театр');
     let expensesName,
       expensesCost;
 
@@ -33,11 +66,13 @@ const appData = {
     appData.deposit = confirm('Есть ли у вас депозит в банке?');
 
     for (let i = 0; i < 2; i++) { // Сделал две итерации, в ТЗ к домашке не указано точное количество
-      expensesName = prompt('Введите обязательную статью расходов?');
-      do {
-        expensesCost = prompt('Во сколько это обойдётся?');
-      } while (!isNumber(expensesCost));
-      appData.expenses[expensesName] = +expensesCost;
+      expensesName = stringValidate('Введите обязательную статью расходов?',
+        'Данные должны быть строкой! Введите обязательную статью расходов?',
+        'Ипотека');
+      expensesCost = numValidate('Во сколько это обойдётся?',
+        'Данные должны быть числом! Во сколько это обойдётся?',
+        '10000');
+      appData.expenses[expensesName] = expensesCost;
     }
   },
 
@@ -53,7 +88,8 @@ const appData = {
   },
 
   getTargetMonth: () => {
-    return ((appData.mission / appData.budgetDay) < 0) ? 'Цель не будет достигнута' : 'Цель будет достигнута за ' + (appData.mission / appData.budgetMonth) + ' месяцев';
+    return ((appData.mission / appData.budgetDay) < 0) ?
+      'Цель не будет достигнута' : 'Цель будет достигнута за ' + (appData.mission / appData.budgetMonth) + ' месяцев';
   },
 
   getStatusIncome: () => { // Локальные переменные имеют бОльший приоритет, чем глобальные
@@ -68,6 +104,29 @@ const appData = {
     }
   },
 
+  getInfoDeposit: function () {
+    if (appData.deposit) {
+      appData.percentDeposit = numValidate('Какой годовой процент?',
+        'Данные должны быть числом! Какой годовой процент?',
+        '10');
+      appData.moneyDeposit = numValidate('Какая сумма заложена?',
+        'Данные должны быть числом! Какая сумма заложена?',
+        '10000');
+    }
+  },
+
+  calcSavedMoney: function () {
+    return appData.budgetMonth * appData.period;
+  },
+
+  showAddExpenses: () => {
+    const arr = [];
+    appData.addExpenses.forEach(item => {
+      arr.push(item[0].toUpperCase() + item.substr(1));
+    });
+    return arr.join(', ');
+  },
+
   showAllProps: () => {
     for (let prop in appData) {
       console.log(prop + ': ', appData[prop]);
@@ -78,13 +137,16 @@ const appData = {
 appData.asking();
 appData.getExpensesMonth();
 appData.getBudget();
+appData.getInfoDeposit();
 
 console.log('Бюджет на месяц: ' + appData.budgetMonth);
 console.log('Бюджет на день: ' + appData.budgetDay);
 
+console.log(appData.showAddExpenses());
 console.log('Расходы на месяц: ' + appData.expensesMonth);
 console.log(appData.getTargetMonth());
 console.log(appData.getStatusIncome(appData.budgetDay));
+console.log(appData.calcSavedMoney());
 
 console.log('Наша программа включает в себя данные: ');
 
