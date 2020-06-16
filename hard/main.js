@@ -4,6 +4,7 @@ const week = ['Понедельник', 'Вторник', 'Среда', 'Чет�
   date = new Date().toLocaleString('ru', {weekday: 'long'}),
   today = date[0].toUpperCase() + date.substr(1);
   console.log('today: ', today);
+  console.log('date: ', date);
 
 week.forEach((item, i) => {
   const weekItem = document.createElement('li');
