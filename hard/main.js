@@ -1,16 +1,18 @@
 'use strict';
 const week = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'],
   weekList = document.getElementById('week-list'),
-  date = new Date();
+  date = new Date().toLocaleString('ru', {weekday: 'long'}),
+  today = date[0].toUpperCase() + date.substr(1);
+  console.log('today: ', today);
 
 week.forEach((item, i) => {
-  let weekItem = document.createElement('li');
+  const weekItem = document.createElement('li');
   weekItem.textContent = item;
   if (item === 'Суббота' || item === 'Воскресенье') {
     weekItem.classList.add('day-of-rest');
   }
 
-  if (i + 1 === date.getDay() || (i === 6 && date.getDay() === 0)) {
+  if (item === today) {
     weekItem.classList.add('today');
   }
   weekList.appendChild(weekItem);
