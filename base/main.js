@@ -16,10 +16,10 @@ const
 
   stringValidate = (message, errorMessage, defaultValue) => {
     let output = prompt(message, defaultValue);
-    if (isNumber(output) || output === '') {
+    if (isNumber(output) || output === '' || output === null) {
       do {
         output = prompt(errorMessage, defaultValue);
-      } while (isNumber(output) || output === '');
+      } while (isNumber(output) || output === '' || output === null);
     }
     return output;
   },
@@ -62,7 +62,10 @@ const appData = {
     let expensesName,
       expensesCost;
 
-    appData.addExpenses = addExpenses.toLowerCase().split(', ');
+    if (addExpenses !== null) {
+      appData.addExpenses = addExpenses.toLowerCase().split(', ');
+    }
+    
     appData.deposit = confirm('Есть ли у вас депозит в банке?');
 
     for (let i = 0; i < 2; i++) { // Сделал две итерации, в ТЗ к домашке не указано точное количество
