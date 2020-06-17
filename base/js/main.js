@@ -1,5 +1,24 @@
 'use strict';
 const
+  startButton = document.getElementById('start'),
+  incomeAddButton = document.getElementsByTagName('button')[0],
+  expensesAddButton = document.getElementsByTagName('button')[1],
+  depositCheck = document.querySelector('#deposit-check'),
+  additionalIncomeItem = document.querySelectorAll('.additional_income-item'),
+  budgetDayValue = document.getElementsByClassName('budget_day-value'),
+  expensesMonthValue = document.getElementsByClassName('expenses_month-value'),
+  additionalIncomeValue = document.getElementsByClassName('additional_income-value'),
+  additionalExpensesValue = document.getElementsByClassName('additional_expenses-value'),
+  incomePeriodValue = document.getElementsByClassName('income_period-value'),
+  targetMonthValue = document.getElementsByClassName('target_month-value'),
+  resultBudgetMonth = document.querySelector('.result-budget_month'),
+  expensesTitle = document.querySelector('.expenses-title'),
+  expensesAmount = document.querySelector('.expenses-amount'),
+  salaryAmount = document.querySelector('.salary-amount'),
+  additionalExpensesItem = document.querySelector('.additional_expenses-item'),
+  targetAmount = document.querySelector('.target-amount'),
+  periodSelect = document.querySelector('.period-select'),
+
   isNumber = (n) => {
     return !isNaN(parseFloat(n)) && isFinite(n);
   },
@@ -65,7 +84,7 @@ const appData = {
     if (addExpenses !== null) {
       appData.addExpenses = addExpenses.toLowerCase().split(', ');
     }
-    
+
     appData.deposit = confirm('Есть ли у вас депозит в банке?');
 
     for (let i = 0; i < 2; i++) { // Сделал две итерации, в ТЗ к домашке не указано точное количество
@@ -154,3 +173,22 @@ console.log(appData.calcSavedMoney());
 console.log('Наша программа включает в себя данные: ');
 
 appData.showAllProps();
+
+console.log('startButton: ', startButton);
+console.log('incomeAddButton: ', incomeAddButton);
+console.log('expensesAddButton: ', expensesAddButton);
+console.log('depositCheck: ', depositCheck);
+console.log('additionalIncomeItem: ', additionalIncomeItem);
+console.log('budgetDayValue: ', budgetDayValue);
+console.log('expensesMonthValue: ', expensesMonthValue);
+console.log('additionalIncomeValue: ', additionalIncomeValue);
+console.log('additionalExpensesValue: ', additionalExpensesValue);
+console.log('incomePeriodValue: ', incomePeriodValue);
+console.log('targetMonthValue: ', targetMonthValue);
+console.log('resultBudgetMonth: ', resultBudgetMonth);
+console.log('expensesTitle: ', expensesTitle);
+console.log('expensesAmount: ', expensesAmount);
+console.log('salaryAmount: ', salaryAmount);
+console.log('additionalExpensesItem: ', additionalExpensesItem);
+console.log('targetAmount: ', targetAmount);
+console.log('periodSelect: ', periodSelect);
