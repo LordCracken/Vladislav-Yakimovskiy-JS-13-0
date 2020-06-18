@@ -71,5 +71,5 @@ const outputSringDate = document.querySelector('.string-date'),
   outputNumDate = document.querySelector('.num-date');
 setInterval(() => {
   outputSringDate.textContent = `Сегодня ${stringDate.weekday}, ${stringDate.day} ${stringDate.month} ${stringDate.year} года, ${getDeclension(stringDate.hour, ['час', 'часа', 'часов'])} ${getDeclension(stringDate.minute, ['минута', 'минуты', 'минут'])} ${getDeclension(stringDate.second, ['секунда', 'секунды', 'секунд'])}`;
-  outputNumDate.textContent = `${addZero(numDate.day)}.${addZero(numDate.month)}.${addZero(numDate.year)} - ${addZero(numDate.hour)}:${addZero(numDate.minute)}:${addZero(numDate.second)}`;
+  outputNumDate.textContent = `${addZero(numDate.day)}.${addZero(numDate.month)}.${addZero(numDate.year)} - ${numDate.hour}:${addZero(numDate.minute)}:${addZero(numDate.second)}`;
 }, 1000);
