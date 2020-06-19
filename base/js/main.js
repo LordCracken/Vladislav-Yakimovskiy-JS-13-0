@@ -14,6 +14,8 @@ const
   resultBudgetMonth = document.querySelector('.budget_month-value'),
   expensesTitle = document.querySelectorAll('.expenses-title')[1],
   expensesAmount = document.querySelector('.expenses-amount'),
+  incomeTitle = document.querySelectorAll('.income-title')[1],
+  incomeAmount = document.querySelector('.income-amount'),
   salaryAmount = document.querySelector('.salary-amount'),
   additionalExpensesItem = document.querySelector('.additional_expenses-item'),
   targetAmount = document.querySelector('.target-amount'),
@@ -188,6 +190,8 @@ console.log('targetMonthValue: ', targetMonthValue);
 console.log('resultBudgetMonth: ', resultBudgetMonth);
 console.log('expensesTitle: ', expensesTitle);
 console.log('expensesAmount: ', expensesAmount);
+console.log('incomeTitle: ', incomeTitle);
+console.log('incomeAmount: ', incomeAmount);
 console.log('salaryAmount: ', salaryAmount);
 console.log('additionalExpensesItem: ', additionalExpensesItem);
 console.log('targetAmount: ', targetAmount);
