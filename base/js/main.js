@@ -61,6 +61,15 @@ const appData = {
   moneyDeposit: 0,
   start: () => {
 
+    appData.incomeMonth = 0;
+    appData.budgetDay = 0;
+    appData.budgetMonth = 0;
+    appData.expensesMonth = 0;
+    appData.income = {};
+    appData.addIncome = [];
+    appData.expenses = {};
+    appData.addExpenses = [];
+
     appData.budget = +salaryAmount.value;
     appData.getExpenses();
     appData.getIncome();
