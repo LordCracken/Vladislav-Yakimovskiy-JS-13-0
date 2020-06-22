@@ -63,6 +63,15 @@ const appData = {
   moneyDeposit: 0,
   start: () => {
 
+    appData.incomeMonth = 0;
+    appData.budgetDay = 0;
+    appData.budgetMonth = 0;
+    appData.expensesMonth = 0;
+    appData.income = {};
+    appData.addIncome = [];
+    appData.expenses = {};
+    appData.addExpenses = [];
+
     appData.budget = +salaryAmount.value;
     appData.getExpenses();
     appData.getIncome();
@@ -100,6 +109,8 @@ const appData = {
     if (expensesItems.length === 3) {
       expensesAddButton.style.display = 'none';
     }
+
+    appData.validate();
   },
 
   getExpenses: () => {
@@ -125,6 +136,8 @@ const appData = {
     if (incomeItems.length === 3) {
       incomeAddButton.style.display = 'none';
     }
+
+    appData.validate();
   },
 
   getIncome: () => {
@@ -216,6 +229,31 @@ const appData = {
     return arr.join(', ');
   },
 
+  validate: () => {
+    sumField.forEach(item => {
+      item.addEventListener('input', () => {
+        const symbol = item.value[item.value.length - 1];
+
+        if (/^[0-9]/.test(symbol)) {
+          return;
+        } else {
+          item.value = item.value.substring(0, [item.value.length - 1]);
+        }
+      });
+    });
+    nameField.forEach(item => {
+      item.addEventListener('input', () => {
+        const symbol = item.value[item.value.length - 1];
+
+        if (/^[а-яА-Я]/.test(symbol)) {
+          return;
+        } else {
+          item.value = item.value.substring(0, [item.value.length - 1]);
+        }
+      });
+    });
+  }
+
   // showAllProps: () => {
   //   for (let prop in appData) {
   //     console.log(prop + ': ', appData[prop]);
@@ -230,28 +268,7 @@ startButton.addEventListener('click', () => {
 expensesAddButton.addEventListener('click', appData.addExpensesBlock);
 incomeAddButton.addEventListener('click', appData.addIncomeBlock);
 periodSelect.addEventListener('input', appData.changePeriod);
-sumField.forEach(item => {
-  item.addEventListener('input', () => {
-    const symbol = item.value[item.value.length - 1];
-
-    if (/^[0-9]/.test(symbol)) {
-      return;
-    } else {
-      item.value = item.value.substring(0, [item.value.length - 1]);
-    }
-  });
-  nameField.forEach(item => {
-    item.addEventListener('input', () => {
-      const symbol = item.value[item.value.length - 1];
-
-      if (/^[а-яА-Я]/.test(symbol)) {
-        return;
-      } else {
-        item.value = item.value.substring(0, [item.value.length - 1]);
-      }
-    });
-  });
-});
+appData.validate();
 
 // console.log('Наша программа включает в себя данные: ');
 // appData.showAllProps();
