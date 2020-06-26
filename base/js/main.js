@@ -316,8 +316,10 @@ const appData = {
   // }
 };
 
+const startFunc = appData.start.bind(appData);
+
 startButton.addEventListener('click', () => {
-  return !isNumber(salaryAmount.value) ? event.preventDefault() : appData.start();
+  return !isNumber(salaryAmount.value) ? event.preventDefault() : startFunc();
 });
 cancelButton.addEventListener('click', () => appData.reset());
 expensesAddButton.addEventListener('click', () => appData.addExpensesBlock());
