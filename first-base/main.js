@@ -28,7 +28,7 @@ DomElement.prototype.createElement = function () {
     font-size: ${this.fontSize};`;
 
   outputEl.textContent = prompt('Какой текст вводим в новый элемент?');
-  wrapper.append(outputEl);
+  wrapper.prepend(outputEl);
 };
 
 const test = new DomElement('#selector', '200px', '200px', '#f00', '28px');
