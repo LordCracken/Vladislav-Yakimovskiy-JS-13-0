@@ -59,8 +59,6 @@ class AppData {
     this.budget = +salaryAmount.value;
     this.getExpInc();
     this.getExpensesMonth();
-    // this.getAddExpenses();
-    // this.getAddIncome();
     this.getAddIncExp();
     this.getBudget();
 
