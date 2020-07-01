@@ -198,17 +198,22 @@ class AppData {
   }
 
   getAddIncExp() {
-    const addExpenses = additionalExpensesItem.value.split(',');
-    const getAddItem = (item) => {
-      const newItem = typeof item === 'string' ? item : item.value,
-        addItem = newItem === item ? this.addExpenses : this.addIncome;
-      if (newItem !== '') {
-        addItem.push(newItem);
+    const getAddItem = (array, item) => {
+      if (item.length === undefined) {
+        item.value.split(',').forEach((item) => {
+          if (item !== '') {
+            array.push(item);
+          }
+        });
+      } else {
+        item.forEach((item) => {
+          array.push(item.value);
+        });
       }
     };
 
-    additionalIncomeItem.forEach(getAddItem);
-    addExpenses.forEach(getAddItem);
+    getAddItem(this.addIncome, additionalIncomeItem);
+    getAddItem(this.addExpenses, additionalExpensesItem);
   }
 
   getExpensesMonth() {
