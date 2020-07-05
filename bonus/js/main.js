@@ -110,26 +110,30 @@ class AppData {
     range.value = 1;
     this.changePeriod();
 
-    salaryAmount.readOnly = false;
+    salaryAmount.disabled = false;
     incomeItems.forEach((item) => {
       const itemIncome = item.querySelector('.income-title'),
         cashIncome = item.querySelector('.income-amount');
-      itemIncome.readOnly = false;
-      cashIncome.readOnly = false;
+      itemIncome.disabled = false;
+      cashIncome.disabled = false;
     });
     additionalIncomeItem.forEach((item) => {
-      item.readOnly = false;
+      item.disabled = false;
     });
     expensesItems.forEach((item) => {
       const itemExpenses = item.querySelector('.expenses-title'),
         cashExpenses = item.querySelector('.expenses-amount');
-      itemExpenses.readOnly = false;
-      cashExpenses.readOnly = false;
+      itemExpenses.disabled = false;
+      cashExpenses.disabled = false;
     });
-    additionalExpensesItem.readOnly = false;
-    targetAmount.readOnly = false;
-    depositAmount.readOnly = false;
+    additionalExpensesItem.disabled = false;
+    targetAmount.disabled = false;
+    depositBank.disabled = false;
+    depositAmount.disabled = false;
     depositCheck.checked = false;
+    incomeAddButton.disabled = false;
+    expensesAddButton.disabled = false;
+    depositCheck.disabled = false;
     this.depositHandler();
 
     startButton.style.display = 'inline-block';
@@ -177,27 +181,30 @@ class AppData {
   }
 
   disableInputs() {
-    salaryAmount.readOnly = true;
+    salaryAmount.disabled = true;
     incomeItems.forEach((item) => {
       const itemIncome = item.querySelector('.income-title'),
         cashIncome = item.querySelector('.income-amount');
-      itemIncome.readOnly = true;
-      cashIncome.readOnly = true;
+      itemIncome.disabled = true;
+      cashIncome.disabled = true;
     });
     additionalIncomeItem.forEach((item) => {
-      item.readOnly = true;
+      item.disabled = true;
     });
     expensesItems.forEach((item) => {
       const itemExpenses = item.querySelector('.expenses-title'),
         cashExpenses = item.querySelector('.expenses-amount');
-      itemExpenses.readOnly = true;
-      cashExpenses.readOnly = true;
+      itemExpenses.disabled = true;
+      cashExpenses.disabled = true;
     });
-    additionalExpensesItem.readOnly = true;
-    targetAmount.readOnly = true;
-    depositAmount.readOnly = true;
-    depositPercent.readOnly = true;
-    depositBank.readOnly = true;
+    additionalExpensesItem.disabled = true;
+    targetAmount.disabled = true;
+    depositAmount.disabled = true;
+    depositPercent.disabled = true;
+    depositBank.disabled = true;
+    incomeAddButton.disabled = true;
+    expensesAddButton.disabled = true;
+    depositCheck.disabled = true;
   }
 
   validate() {
@@ -327,7 +334,7 @@ class AppData {
     const valueSelect = this.value;
     if (valueSelect === 'other') {
       depositPercent.style.display = 'inline-block';
-      depositPercent.readOnly = false;
+      depositPercent.disabled = false;
     } else {
       depositPercent.style.display = 'none';
       depositPercent.value = +valueSelect;
@@ -354,9 +361,15 @@ class AppData {
   eventsListeners() {
     startButton.addEventListener('click', () => {
 
-      if (!isNumber(+depositPercent.value) || +depositPercent.value > 100 || +depositPercent.value < 0) {
+      if (depositBank.value === '' || depositAmount.value === '' || depositPercent.value === '') {
+        depositCheck.checked = false;
+        this.depositHandler();
+      } else if (depositBank.value === '0') {
+        alert('Выберете банк');
+        return;
+      } else if (!isNumber(+depositPercent.value) || +depositPercent.value > 100 || +depositPercent.value < 0) {
         alert('Введите корректное значение в поле проценты');
-        event.preventDefault();
+        return;
       }
       return !isNumber(salaryAmount.value) ? event.preventDefault() : this.start();
     });
