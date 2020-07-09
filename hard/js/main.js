@@ -83,14 +83,15 @@ window.addEventListener('DOMContentLoaded', () => {
 
     document.addEventListener('click', event => {
       const target = event.target;
-      if (target.classList.contains('menu') || target.parentNode === btnMenu) {
+      if (target.matches('.menu') || target.parentNode === btnMenu) {
         handlerMenu();
-      } else if (target.classList.contains('close-btn')) {
+      } else if (target.matches('.close-btn')) {
         event.preventDefault();
         handlerMenu();
-      } else if (target.tagName !== `MENU` && target.tagName !== `LI` && menu.style.transform === `translateX(0%)`) {
-        console.log(target);
+      } else if (!target.matches('menu') && !target.matches('li') && menu.style.transform === `translateX(0%)`) {
         handlerMenu();
+      } else {
+        return;
       }
     });
   };
