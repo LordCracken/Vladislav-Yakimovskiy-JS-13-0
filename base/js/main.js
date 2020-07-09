@@ -29,9 +29,8 @@ window.addEventListener('DOMContentLoaded', () => {
       };
     };
 
-    const callClockUpdate = setInterval(updateClock, 1000);
 
-    function updateClock() {
+    const updateClock = () => {
       const timer = getTimeRemaining();
 
       timerHours.textContent = addZero(timer.hours);
@@ -44,8 +43,9 @@ window.addEventListener('DOMContentLoaded', () => {
         timerMinutes.textContent = addZero(0);
         timerSeconds.textContent = addZero(0);
       }
-    }
+    };
 
+    const callClockUpdate = setInterval(updateClock, 1000);
   };
 
   countTimer('17 december 2020');
