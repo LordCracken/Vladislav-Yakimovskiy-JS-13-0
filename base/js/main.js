@@ -56,29 +56,7 @@ window.addEventListener('DOMContentLoaded', () => {
       menu = document.querySelector('menu');
 
     const handlerMenu = () => {
-
-      let menuOffset = -100;
-      const animateMenu = () => {
-        const startAnimate = requestAnimationFrame(animateMenu);
-
-        menuOffset += 5;
-        menu.style.transform = `translateX(${menuOffset}%)`;
-
-        if (menu.style.transform === `translateX(0%)`) cancelAnimationFrame(startAnimate);
-      };
-
-      if (menu.style.transform === `translateX(-100%)`) {
-        if (screen.width >= 768) {
-          animateMenu();
-        } else {
-          menu.style.transform = `translateX(0%)`;
-          menuOffset = 0;
-        }
-      } else {
-        menu.style.transform = `translateX(-100%)`;
-        menuOffset = -100;
-      }
-
+      menu.classList.toggle('active-menu');
     };
 
     document.addEventListener('click', event => {
@@ -88,7 +66,7 @@ window.addEventListener('DOMContentLoaded', () => {
       } else if (target.matches('.close-btn')) {
         event.preventDefault();
         handlerMenu();
-      } else if (!target.matches('menu') && !target.matches('li') && menu.style.transform === `translateX(0%)`) {
+      } else if (!target.matches('menu') && !target.matches('li') && menu.classList.contains('active-menu')) {
         handlerMenu();
       } else {
         return;
@@ -101,18 +79,43 @@ window.addEventListener('DOMContentLoaded', () => {
   // popup
   const togglePopUp = () => {
     const popUp = document.querySelector('.popup'),
-      popupBtn = document.querySelectorAll('.popup-btn');
+      popupBtn = document.querySelectorAll('.popup-btn'),
+      popUpContent = document.querySelector('.popup-content');
+      let popUpOffset = -2000;
 
-    popupBtn.forEach(elem => elem.addEventListener('click', () => popUp.style.display = `block`));
+    const popUpAnimation = () => {
+      const startAnimate = requestAnimationFrame(popUpAnimation);
+
+      popUp.style.display = `block`;
+      popUpContent.style.transform = `translateX(${popUpOffset}px)`;
+      popUpOffset += 25;
+
+      if (popUpOffset > -50) cancelAnimationFrame(startAnimate);
+    };
+
+    const resetPopUpAnimation = () => {
+      popUpOffset = -2000;
+      popUp.style.display = `none`;
+      popUpContent.style.transform = `translateX(${popUpOffset}px)`;
+    };
+
+    popupBtn.forEach(elem => elem.addEventListener('click', () => {
+      if (screen.width >= 768) {
+        popUpAnimation();
+      } else {
+        popUp.style.display = `block`;
+        popUpContent.style.transform = `translateX(-50px)`;
+      }
+    }));
     popUp.addEventListener('click', event => {
       let target = event.target;
 
       if (target.classList.contains('popup-close')) {
-        popUp.style.display = `none`;
+        resetPopUpAnimation();
       } else {
         target = target.closest('.popup-content');
 
-        if (!target) popUp.style.display = `none`;
+        if (!target) resetPopUpAnimation();
       }
     });
   };
