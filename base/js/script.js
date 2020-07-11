@@ -86,36 +86,6 @@ class Todo {
     });
   }
 
-  editItem(target) {
-    let currentEl,
-      oldItemValue;
-    const todoItemEdit = document.querySelectorAll('.todo-edit');
-    const keyInput = () => {
-      if (event.keyCode === 13) {
-        event.preventDefault();
-        const editedItem = this.todoData.get(currentEl.key);
-        editedItem.value = currentEl.closest('.todo-item').querySelector('.text-todo').textContent;
-        if (editedItem.value === '') {
-          alert('Дело не должно быть пустым!');
-          editedItem.value = oldItemValue;
-        }
-        this.render();
-      }
-    };
-    todoItemEdit.forEach(item => {
-      if (item === target) {
-        if (target.closest('.todo-item').getAttribute('contenteditable') === 'true') {
-          this.render();
-        } else {
-          currentEl = item.closest('.todo-item');
-          oldItemValue = currentEl.closest('.todo-item').querySelector('.text-todo').textContent;
-          target.closest('.todo-item').addEventListener('keydown', keyInput);
-          target.closest('.todo-item').setAttribute('contenteditable', true);
-        }
-      }
-    });
-  }
-
   handler() {
     document.documentElement.addEventListener('click', () => {
       const target = event.target;
@@ -125,9 +95,6 @@ class Todo {
         break;
       case document.querySelector('.todo-complete'):
         this.completedItem(target);
-        break;
-      case document.querySelector('.todo-edit'):
-        this.editItem(target);
         break;
       case document.querySelector('.text-todo'):
         break;
