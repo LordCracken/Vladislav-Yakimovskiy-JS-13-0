@@ -81,7 +81,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const popUp = document.querySelector('.popup'),
       popupBtn = document.querySelectorAll('.popup-btn'),
       popUpContent = document.querySelector('.popup-content');
-      let popUpOffset = -2000;
+    let popUpOffset = -2000;
 
     const popUpAnimation = () => {
       const startAnimate = requestAnimationFrame(popUpAnimation);
@@ -285,5 +285,26 @@ window.addEventListener('DOMContentLoaded', () => {
   };
 
   slider();
+
+  // Смена картинок при наведении
+  const changeImages = () => {
+    const commandPhoto = document.querySelectorAll('.command__photo');
+    commandPhoto.forEach(item => {
+      const oldSrc = item.src;
+      item.addEventListener('mouseenter', e => e.target.src = e.target.dataset.img);
+      item.addEventListener('mouseleave', e => e.target.src = oldSrc);
+    });
+  };
+
+  changeImages();
+
+  // Валидация калькулятора
+  const calcValidate = () => {
+    const calcInputs = document.querySelectorAll('input.calc-item');
+
+    calcInputs.forEach(item => item.addEventListener('input', () => item.value = item.value.replace(/\D/g, '')));
+  };
+
+  calcValidate();
 
 });
