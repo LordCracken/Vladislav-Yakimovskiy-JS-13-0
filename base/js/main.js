@@ -326,7 +326,20 @@ window.addEventListener('DOMContentLoaded', () => {
         total = price * typeValue * countValue * dayValue;
       }
 
-      totalValue.textContent = total;
+      let currentTotal = 0;
+      const totalAnimation = () => {
+        const animation = requestAnimationFrame(totalAnimation);
+        totalValue.textContent = currentTotal;
+
+        if (currentTotal === total) {
+          cancelAnimationFrame(animation);
+          currentTotal = 0;
+        } else {
+          currentTotal += 1;
+        }
+      };
+
+      totalAnimation();
 
     };
 
@@ -347,5 +360,7 @@ window.addEventListener('DOMContentLoaded', () => {
   };
 
   calcValidate();
+
+  
 
 });
