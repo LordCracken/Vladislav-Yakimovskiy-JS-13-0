@@ -326,7 +326,20 @@ window.addEventListener('DOMContentLoaded', () => {
         total = price * typeValue * countValue * dayValue;
       }
 
-      totalValue.textContent = total;
+      let currentTotal = 0;
+      const totalAnimation = () => {
+        const animation = requestAnimationFrame(totalAnimation);
+        totalValue.textContent = currentTotal;
+
+        if (currentTotal === total) {
+          cancelAnimationFrame(animation);
+          currentTotal = 0;
+        } else {
+          currentTotal += 1;
+        }
+      };
+
+      totalAnimation();
 
     };
 
@@ -347,5 +360,75 @@ window.addEventListener('DOMContentLoaded', () => {
   };
 
   calcValidate();
+
+  // send-ajax-form
+  const sendForm = selector => {
+    const errorMessage = `Что-то пошло не так...`,
+      loadMessage = `Загрузка...`,
+      successMessage = `Спасибо! Мы скоро с вами свяжемся!`;
+
+    const form = document.getElementById(selector);
+
+    const statusMessage = document.createElement('div');
+    statusMessage.style.cssText = `font-size: 2rem; color: #ffffff`;
+
+    form.addEventListener('submit', event => {
+      event.preventDefault();
+      form.appendChild(statusMessage);
+      statusMessage.textContent = loadMessage;
+
+      const formData = new FormData(form);
+      const body = {};
+
+      formData.forEach((val, key) => body[key] = val);
+      postData(body, () => {
+        statusMessage.textContent = successMessage;
+        form.reset();
+      },
+      error => {
+        statusMessage.textContent = errorMessage;
+        console.log(error);
+      });
+
+    });
+
+    const postData = (body, outputData, errorData) => {
+      const request = new XMLHttpRequest();
+
+      request.addEventListener('readystatechange', () => {
+        if (request.readyState !== 4) return;
+        request.status === 200 ? outputData() : errorData(request.status);
+      });
+
+      request.open('POST', './server.php');
+      request.setRequestHeader('Content-Type', 'application/json');
+
+      request.send(JSON.stringify(body));
+    };
+  };
+
+  sendForm('form1');
+  sendForm('form2');
+  sendForm('form3');
+
+  // Валидация форм
+  const formValidate = () => {
+    const inputs = document.querySelectorAll('input');
+
+    inputs.forEach(input => {
+      input.addEventListener('input', event => {
+        const target = event.target;
+        if (target.matches(`[name='user_name'], [name='user_message']`)) {
+          target.value = target.value.replace(/[^а-яА-ЯёЁ\s]/g, '');
+        } else if (target.matches(`[name='user_phone']`)) {
+          target.value = target.value.replace(/[^+\d]/g, '');
+        } else {
+          return;
+        }
+      });
+    });
+  };
+
+  formValidate();
 
 });
