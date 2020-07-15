@@ -112,10 +112,18 @@ window.addEventListener('DOMContentLoaded', () => {
 
       if (target.classList.contains('popup-close')) {
         resetPopUpAnimation();
+        popUpContent.querySelector('.send-message').remove();
+        popUpContent.querySelector('form').reset();
       } else {
         target = target.closest('.popup-content');
 
-        if (!target) resetPopUpAnimation();
+        if (!target) {
+          resetPopUpAnimation();
+          if (popUpContent.querySelector('.send-message')) {
+            popUpContent.querySelector('.send-message').remove();
+            popUpContent.querySelector('form').reset();
+          }
+        }
       }
     });
   };
@@ -362,28 +370,28 @@ window.addEventListener('DOMContentLoaded', () => {
   calcValidate();
 
   // send-ajax-form
-  const sendForm = selector => {
+  const sendForm = () => {
     const errorMessage = `Что-то пошло не так...`,
       loadMessage = `Загрузка...`,
       successMessage = `Спасибо! Мы скоро с вами свяжемся!`;
 
-    const form = document.getElementById(selector);
-
     const statusMessage = document.createElement('div');
+    statusMessage.classList.add('send-message');
     statusMessage.style.cssText = `font-size: 2rem; color: #ffffff`;
 
-    form.addEventListener('submit', event => {
+    document.documentElement.addEventListener('submit', event => {
       event.preventDefault();
-      form.appendChild(statusMessage);
+      event.target.appendChild(statusMessage);
       statusMessage.textContent = loadMessage;
 
-      const formData = new FormData(form);
+      const formData = new FormData(event.target);
       const body = {};
 
       formData.forEach((val, key) => body[key] = val);
       postData(body, () => {
         statusMessage.textContent = successMessage;
-        form.reset();
+        event.target.reset();
+        setTimeout(() => statusMessage.remove(), 3000);
       },
       error => {
         statusMessage.textContent = errorMessage;
@@ -407,25 +415,18 @@ window.addEventListener('DOMContentLoaded', () => {
     };
   };
 
-  sendForm('form1');
-  sendForm('form2');
-  sendForm('form3');
-
+  sendForm();
   // Валидация форм
   const formValidate = () => {
-    const inputs = document.querySelectorAll('input');
-
-    inputs.forEach(input => {
-      input.addEventListener('input', event => {
-        const target = event.target;
-        if (target.matches(`[name='user_name'], [name='user_message']`)) {
-          target.value = target.value.replace(/[^а-яА-ЯёЁ\s]/g, '');
-        } else if (target.matches(`[name='user_phone']`)) {
-          target.value = target.value.replace(/[^+\d]/g, '');
-        } else {
-          return;
-        }
-      });
+    document.documentElement.addEventListener('input', event => {
+      const target = event.target;
+      if (target.matches(`[name='user_name'], [name='user_message']`)) {
+        target.value = target.value.replace(/[^а-яА-ЯёЁ\s]/g, '');
+      } else if (target.matches(`[name='user_phone']`)) {
+        target.value = target.value.replace(/[^+\d]/g, '');
+      } else {
+        return;
+      }
     });
   };
 
