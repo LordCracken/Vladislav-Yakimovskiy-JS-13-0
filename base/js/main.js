@@ -112,8 +112,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
       if (target.classList.contains('popup-close')) {
         resetPopUpAnimation();
-        popUpContent.querySelector('.send-message').remove();
-        popUpContent.querySelector('form').reset();
+        if (popUpContent.querySelector('.send-message')) {
+          popUpContent.querySelector('.send-message').remove();
+          popUpContent.querySelector('form').reset();
+        }
       } else {
         target = target.closest('.popup-content');
 
@@ -396,6 +398,7 @@ window.addEventListener('DOMContentLoaded', () => {
       error => {
         statusMessage.textContent = errorMessage;
         console.log(error);
+        setTimeout(() => statusMessage.remove(), 3000);
       });
 
     });
