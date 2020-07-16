@@ -90,7 +90,7 @@ window.addEventListener('DOMContentLoaded', () => {
       popUpContent.style.transform = `translateX(${popUpOffset}px)`;
       popUpOffset += 25;
 
-      if (popUpOffset > -50) cancelAnimationFrame(startAnimate);
+      if (popUpOffset > 25) cancelAnimationFrame(startAnimate);
     };
 
     const resetPopUpAnimation = () => {
