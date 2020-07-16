@@ -377,6 +377,21 @@ window.addEventListener('DOMContentLoaded', () => {
       loadMessage = `Загрузка...`,
       successMessage = `Спасибо! Мы скоро с вами свяжемся!`;
 
+    const postData = body => new Promise((resolve, reject) => {
+
+      const request = new XMLHttpRequest();
+
+      request.addEventListener('readystatechange', () => {
+        if (request.readyState !== 4) return;
+        request.status === 200 ? resolve() : reject(request.status);
+      });
+
+      request.open('POST', './server.php');
+      request.setRequestHeader('Content-Type', 'application/json');
+
+      request.send(JSON.stringify(body));
+    });
+
     const statusMessage = document.createElement('div');
     statusMessage.classList.add('send-message');
     statusMessage.style.cssText = `font-size: 2rem; color: #ffffff`;
@@ -390,32 +405,19 @@ window.addEventListener('DOMContentLoaded', () => {
       const body = {};
 
       formData.forEach((val, key) => body[key] = val);
-      postData(body, () => {
-        statusMessage.textContent = successMessage;
-        event.target.reset();
-        setTimeout(() => statusMessage.remove(), 3000);
-      },
-      error => {
-        statusMessage.textContent = errorMessage;
-        console.log(error);
-        setTimeout(() => statusMessage.remove(), 3000);
-      });
+      postData(body)
+        .then(() => {
+          statusMessage.textContent = successMessage;
+          event.target.reset();
+          setTimeout(() => statusMessage.remove(), 3000);
+        })
+        .catch(error => {
+          statusMessage.textContent = errorMessage;
+          console.log(error);
+          setTimeout(() => statusMessage.remove(), 3000);
+        });
 
     });
-
-    const postData = (body, outputData, errorData) => {
-      const request = new XMLHttpRequest();
-
-      request.addEventListener('readystatechange', () => {
-        if (request.readyState !== 4) return;
-        request.status === 200 ? outputData() : errorData(request.status);
-      });
-
-      request.open('POST', './server.php');
-      request.setRequestHeader('Content-Type', 'application/json');
-
-      request.send(JSON.stringify(body));
-    };
   };
 
   sendForm();
