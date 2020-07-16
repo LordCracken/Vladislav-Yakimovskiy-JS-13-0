@@ -90,7 +90,7 @@ window.addEventListener('DOMContentLoaded', () => {
       popUpContent.style.transform = `translateX(${popUpOffset}px)`;
       popUpOffset += 25;
 
-      if (popUpOffset > -50) cancelAnimationFrame(startAnimate);
+      if (popUpOffset > 25) cancelAnimationFrame(startAnimate);
     };
 
     const resetPopUpAnimation = () => {
@@ -361,6 +361,74 @@ window.addEventListener('DOMContentLoaded', () => {
 
   calcValidate();
 
-  
-
 });
+
+const valid1 = new Validator({
+  selector: '#form1',
+  pattern: {
+    name: /^[а-яё]+$/i
+  },
+  method: {
+    'form1-name': [
+      ['notEmpty'],
+      ['pattern', 'name']
+    ],
+    'form1-phone': [
+      ['notEmpty'],
+      ['pattern', 'phone']
+    ],
+    'form1-email': [
+      ['notEmpty'],
+      ['pattern', 'email']
+    ]
+  }
+});
+valid1.init();
+
+const valid2 = new Validator({
+  selector: '#form2',
+  pattern: {
+    name: /^[а-яё]+$/i
+  },
+  method: {
+    'form2-name': [
+      ['notEmpty'],
+      ['pattern', 'name']
+    ],
+    'form2-phone': [
+      ['notEmpty'],
+      ['pattern', 'phone']
+    ],
+    'form2-email': [
+      ['notEmpty'],
+      ['pattern', 'email']
+    ],
+    'form2-message': [
+      ['notEmpty'],
+      ['pattern', 'name']
+    ]
+  }
+});
+valid2.init();
+
+const valid3 = new Validator({
+  selector: '#form3',
+  pattern: {
+    name: /^[а-яё]+$/i
+  },
+  method: {
+    'form3-name': [
+      ['notEmpty'],
+      ['pattern', 'name']
+    ],
+    'form3-phone': [
+      ['notEmpty'],
+      ['pattern', 'phone']
+    ],
+    'form3-email': [
+      ['notEmpty'],
+      ['pattern', 'email']
+    ]
+  }
+});
+valid3.init();
