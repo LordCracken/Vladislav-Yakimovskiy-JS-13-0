@@ -377,19 +377,12 @@ window.addEventListener('DOMContentLoaded', () => {
       loadMessage = `Загрузка...`,
       successMessage = `Спасибо! Мы скоро с вами свяжемся!`;
 
-    const postData = body => new Promise((resolve, reject) => {
-
-      const request = new XMLHttpRequest();
-
-      request.addEventListener('readystatechange', () => {
-        if (request.readyState !== 4) return;
-        request.status === 200 ? resolve() : reject(request.status);
-      });
-
-      request.open('POST', './server.php');
-      request.setRequestHeader('Content-Type', 'application/json');
-
-      request.send(JSON.stringify(body));
+    const postData = body => fetch('./server.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
     });
 
     const statusMessage = document.createElement('div');
@@ -406,7 +399,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
       formData.forEach((val, key) => body[key] = val);
       postData(body)
-        .then(() => {
+        .then(response => {
+          if (response.status !== 200) throw new Error('status network not 200');
           statusMessage.textContent = successMessage;
           event.target.reset();
           setTimeout(() => statusMessage.remove(), 3000);
