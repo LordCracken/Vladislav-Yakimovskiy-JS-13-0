@@ -7,11 +7,14 @@ import 'es6-promise';
 import 'fetch-polyfill';
 import 'math-trunc';
 import 'dom-node-polyfills';
+import smoothscroll from 'smoothscroll-polyfill';
+smoothscroll.polyfill();
 import elementClosest from 'element-closest';
 elementClosest(window);
 
 import countTimer from './modules/countTimer';
 import toggleMenu from './modules/toggleMenu';
+import animateScroll from './modules/animateScroll';
 import togglePopUp from './modules/togglePopUp';
 import tabs from './modules/tabs';
 import slider from './modules/slider';
@@ -25,6 +28,8 @@ import formValidate from './modules/formValidate';
 countTimer('17 december 2020');
 // Меню
 toggleMenu();
+// Плавная прокрутка
+animateScroll();
 // popup
 togglePopUp();
 // Табы

@@ -7,6 +7,8 @@ import 'es6-promise';
 import 'fetch-polyfill';
 import 'math-trunc';
 import 'dom-node-polyfills';
+import smoothscroll from 'smoothscroll-polyfill';
+smoothscroll.polyfill();
 import elementClosest from 'element-closest';
 elementClosest(window);
 
