@@ -9,9 +9,20 @@ function animation() {
   round.style.left = `${+(window.getComputedStyle(round).left).split('px')[0] + 10}px`;
 }
 
-startBtn.addEventListener('click', animation);
-stopBtn.addEventListener('click', () => cancelAnimationFrame(animationID));
-resetBtn.addEventListener('click', () => {
-  cancelAnimationFrame(animationID);
-  round.style.left = 0;
+document.documentElement.addEventListener('click', () => {
+  const target = event.target;
+
+  if (target === startBtn) {
+    animation();
+    startBtn.disabled = true;
+  } else if (target === stopBtn) {
+    cancelAnimationFrame(animationID);
+    startBtn.disabled = false;
+  } else if (target === resetBtn) {
+    cancelAnimationFrame(animationID);
+    round.style.left = 0;
+    startBtn.disabled = false;
+  } else {
+    return;
+  }
 });
