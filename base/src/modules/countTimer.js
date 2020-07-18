@@ -33,7 +33,7 @@ const countTimer = deadline => {
     timerMinutes.textContent = addZero(timer.minutes);
     timerSeconds.textContent = addZero(timer.seconds);
 
-    if (timer.hours <= 0 && timer.minutes <= 0 && timer.seconds <= 0) {
+    if (timer.timeRemaining <= 0) {
       clearInterval(callClockUpdate);
       timerHours.textContent = addZero(0);
       timerMinutes.textContent = addZero(0);

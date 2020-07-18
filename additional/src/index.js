@@ -23,6 +23,7 @@ import calc from './modules/calc';
 import calcValidate from './modules/calcValidate';
 import sendForm from './modules/sendForm';
 import formValidate from './modules/formValidate';
+import maskPhone from './modules/maskPhone';
 
 // Таймер
 countTimer('17 december 2020');
@@ -46,3 +47,5 @@ calcValidate();
 sendForm();
 // Валидация форм
 formValidate();
+// Валидация телефона
+maskPhone(`[name='user_phone']`);

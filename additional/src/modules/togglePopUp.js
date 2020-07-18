@@ -1,6 +1,6 @@
 const togglePopUp = () => {
   const popUp = document.querySelector('.popup'),
-    popupBtn = document.querySelectorAll('.popup-btn'),
+    serviceBlock = document.getElementById('service-block'),
     popUpContent = document.querySelector('.popup-content');
   let popUpOffset = -2000;
 
@@ -20,14 +20,17 @@ const togglePopUp = () => {
     popUpContent.style.transform = `translateX(${popUpOffset}px)`;
   };
 
-  popupBtn.forEach(elem => elem.addEventListener('click', () => {
-    if (screen.width >= 768) {
-      popUpAnimation();
-    } else {
-      popUp.style.display = `block`;
-      popUpContent.style.transform = `translateX(-50px)`;
+  serviceBlock.addEventListener('click', event => {
+    if (event.target.matches('.popup-btn')) {
+      if (screen.width >= 768) {
+        popUpAnimation();
+      } else {
+        popUp.style.display = `block`;
+        popUpContent.style.transform = `translateX(-50px)`;
+      }
     }
-  }));
+  });
+
   popUp.addEventListener('click', event => {
     let target = event.target;
 

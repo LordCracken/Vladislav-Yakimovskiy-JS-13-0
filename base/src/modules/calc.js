@@ -22,19 +22,21 @@ const calc = (price = 100) => {
     }
 
     if (typeValue && squareValue) {
-      total = price * typeValue * countValue * dayValue;
+      total = Math.ceil(price * typeValue * countValue * dayValue);
     }
 
     let currentTotal = 0;
+    const currentTotalInterval = Math.ceil(total / 120);
     const totalAnimation = () => {
       const animation = requestAnimationFrame(totalAnimation);
       totalValue.textContent = currentTotal;
 
-      if (currentTotal === total) {
-        cancelAnimationFrame(animation);
+      if (currentTotal >= total) {
         currentTotal = 0;
+        totalValue.textContent = total;
+        cancelAnimationFrame(animation);
       } else {
-        currentTotal += 1;
+        currentTotal += currentTotalInterval;
       }
     };
 

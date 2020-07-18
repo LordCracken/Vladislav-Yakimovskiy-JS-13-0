@@ -6,7 +6,7 @@ const toggleMenu = () => {
     menu.classList.toggle('active-menu');
   };
 
-  document.addEventListener('click', event => {
+  document.documentElement.addEventListener('click', event => {
     const target = event.target;
     if (target.matches('.menu') || target.parentNode === btnMenu) {
       handlerMenu();

@@ -1,9 +1,18 @@
 const changeImages = () => {
-  const commandPhoto = document.querySelectorAll('.command__photo');
-  commandPhoto.forEach(item => {
-    const oldSrc = item.src;
-    item.addEventListener('mouseenter', e => e.target.src = e.target.dataset.img);
-    item.addEventListener('mouseleave', e => e.target.src = oldSrc);
+  const command = document.getElementById('command');
+
+  command.addEventListener('mouseover', e => {
+    const target = e.target;
+    const oldSrc = target.src;
+    if (target.matches('.command__photo')) {
+      target.addEventListener('mouseenter', () => {
+        target.src = target.dataset.img;
+        target.addEventListener('mouseleave', e => {
+          const target = e.target;
+          if (target.matches('.command__photo')) target.src = oldSrc;
+        });
+      });
+    }
   });
 };
 

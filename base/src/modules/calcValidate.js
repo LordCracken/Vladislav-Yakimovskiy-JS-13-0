@@ -1,7 +1,8 @@
 const calcValidate = () => {
-  const calcInputs = document.querySelectorAll('input.calc-item');
-
-  calcInputs.forEach(item => item.addEventListener('input', () => item.value = item.value.replace(/\D/g, '')));
+  document.documentElement.addEventListener('input', event => {
+    const target = event.target;
+    if (target.matches('input.calc-item')) target.value = target.value.replace(/\D/g, '');
+  });
 };
 
 export default calcValidate;
