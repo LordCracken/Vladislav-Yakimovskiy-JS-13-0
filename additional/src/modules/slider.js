@@ -11,6 +11,7 @@ const slider = () => {
   }
 
   const dot = slider.querySelectorAll('.dot');
+  dot[0].classList.add('dot-active');
 
   let currentSlide = 0,
     interval;

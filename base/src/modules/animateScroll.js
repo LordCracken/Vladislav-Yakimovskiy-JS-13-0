@@ -5,7 +5,7 @@ const animateScroll = () => {
     if (target && target.getAttribute('href') !== '#' && target.getAttribute('href')[0] === '#') {
       e.preventDefault();
       targetPoint = document.querySelector(target.getAttribute('href'));
-      window.scrollBy({ top: targetPoint.offsetTop, behavior: 'smooth' });
+      targetPoint.scrollIntoView({ alignToTop: true, behavior: 'smooth' });
     }
   });
 };
