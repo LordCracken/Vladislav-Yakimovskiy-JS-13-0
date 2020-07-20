@@ -24,6 +24,12 @@ const sendForm = () => {
     const body = {};
 
     formData.forEach((val, key) => body[key] = val);
+
+    if (body['user_phone'].length < 18) {
+      statusMessage.textContent = `Введите телефон полностью`;
+      return;
+    }
+
     postData(body)
       .then(response => {
         if (response.status !== 200) throw new Error('status network not 200');
