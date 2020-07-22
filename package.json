@@ -30,6 +30,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.10.4",
     "dom-node-polyfills": "^1.0.0",
-    "element-closest-polyfill": "^1.0.0"
+    "element-closest-polyfill": "^1.0.0",
+    "smoothscroll-polyfill": "^0.4.4"
   }
 }
