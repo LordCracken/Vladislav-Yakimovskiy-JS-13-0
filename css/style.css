@@ -512,6 +512,7 @@ template,
   cursor: pointer;
   -webkit-transition: 0.5s;
   transition: 0.5s;
+  z-index: 1;
 }
 
 .header-contacts__arrow img {

@@ -10,8 +10,10 @@ smoothscroll.polyfill();
 import toggleMenu from './modules/toggleMenu';
 import smoothScroll from './modules/smoothScroll';
 import maskPhone from './modules/maskPhone';
+import showAdditionalPhone from './modules/showAdditionalPhone';
 
 toggleMenu();
 smoothScroll();
+showAdditionalPhone();
 
 maskPhone(`[name='phone']`);
