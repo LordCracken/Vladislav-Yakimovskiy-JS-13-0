@@ -5386,9 +5386,6 @@ div.wave-block:nth-child(17):after {
   background-size: cover;
   -webkit-transition: 1s;
   transition: 1s;
-}
-
-.popup-dialog-menu--hidden {
   -webkit-transform: translate3d(645px, 0, 0);
   transform: translate3d(645px, 0, 0);
 }
@@ -5397,9 +5394,6 @@ div.wave-block:nth-child(17):after {
   .popup-dialog-menu {
     width: 549px;
     height: 841px;
-  }
-
-  .popup-dialog-menu--hidden {
     -webkit-transform: translate3d(555px, 0, 0);
     transform: translate3d(555px, 0, 0);
   }
@@ -5413,9 +5407,6 @@ div.wave-block:nth-child(17):after {
     border-bottom-left-radius: 100% 17%;
     border-bottom-right-radius: 100% 17%;
     left: -5%;
-  }
-
-  .popup-dialog-menu--hidden {
     -webkit-transform: translate3d(0, -100vh, 0);
     transform: translate3d(0, -100vh, 0);
   }

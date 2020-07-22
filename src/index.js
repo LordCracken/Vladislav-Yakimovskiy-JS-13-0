@@ -7,12 +7,12 @@ import 'dom-node-polyfills';
 import smoothscroll from 'smoothscroll-polyfill';
 smoothscroll.polyfill();
 
-import toggleMenu from './modules/toggleMenu';
+import togglePopups from './modules/togglePopups';
 import smoothScroll from './modules/smoothScroll';
 import maskPhone from './modules/maskPhone';
 import showAdditionalPhone from './modules/showAdditionalPhone';
 
-toggleMenu();
+togglePopups();
 smoothScroll();
 showAdditionalPhone();
 
