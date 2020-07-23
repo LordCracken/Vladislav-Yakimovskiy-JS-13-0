@@ -1,7 +1,7 @@
 const sendForm = () => {
   const errorMessage = `Что-то пошло не так...`,
-    loadMessage = `Загрузка...`,
-    successMessage = `Спасибо! Мы скоро с вами свяжемся!`;
+    loadMessage = `Загрузка...`;
+  const popupThank = document.querySelector('.popup-thank');
 
   const postData = body => fetch('./server.php', {
     method: 'POST',
@@ -35,12 +35,14 @@ const sendForm = () => {
     postData(body)
       .then(response => {
         if (response.status !== 200) throw new Error('status network not 200');
-        statusMessage.textContent = successMessage;
+        statusMessage.textContent = ``;
+        popupThank.style.visibility = `visible`;
         event.target.reset();
       })
       .catch(error => {
         console.error(error);
         statusMessage.textContent = errorMessage;
+        setTimeout(() => statusMessage.textContent = ``, 3000);
       });
   });
 
