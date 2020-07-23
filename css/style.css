@@ -9574,3 +9574,23 @@ strong {
 .slider-dots {
   display: none;
 }
+
+form {
+  position: relative;
+}
+
+.form-status-message {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: #000000;
+}
+
+#feedback1>.form-status-message, #feedback3>.form-status-message {
+  top: -10px;
+}
+
+#feedback2>.form-status-message, #feedback5>.form-status-message {
+  bottom: 30px;
+}

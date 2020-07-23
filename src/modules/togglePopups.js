@@ -6,7 +6,6 @@ const togglePopups = () => {
 
   document.documentElement.addEventListener('click', event => {
     const target = event.target;
-    event.preventDefault();
 
     if (target.matches('.menu__icon')) {
       popupDialogMenu.classList.add('showHide-menu');
@@ -16,9 +15,11 @@ const togglePopups = () => {
       popup.style.visibility = `hidden`;
     }
 
-    if (target.matches('.link-list, .link-list a')) popupRepairTypes.style.visibility = `visible`;
+    if (target.matches('.link-list, .link-list a')) {
+      popupRepairTypes.style.visibility = `visible`;
+    }
     if (target.matches('.link-privacy')) popupPrivacy.style.visibility = `visible`;
-    if (target.matches('.close') || !target.closest('.popup-dialog')) target.closest('.popup').style.visibility = `hidden`;
+    if ((target.matches('.close') || !target.closest('.popup-dialog')) && target.closest('.popup')) target.closest('.popup').style.visibility = `hidden`;
   });
 };
 
