@@ -9587,10 +9587,10 @@ form {
   color: #000000;
 }
 
-#feedback1>.form-status-message, #feedback3>.form-status-message {
+#feedback1>.form-status-message, #feedback3>.form-status-message, #feedback6>.form-status-message {
   top: -10px;
 }
 
-#feedback2>.form-status-message, #feedback5>.form-status-message {
+#feedback2>.form-status-message, #feedback5>.form-status-message, #feedback4>.form-status-message {
   bottom: 30px;
 }

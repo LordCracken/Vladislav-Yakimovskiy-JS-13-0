@@ -19,7 +19,7 @@ const togglePopups = () => {
       popupRepairTypes.style.visibility = `visible`;
     }
     if (target.matches('.link-privacy')) popupPrivacy.style.visibility = `visible`;
-    if ((target.matches('.close') || !target.closest('.popup-dialog')) && target.closest('.popup')) target.closest('.popup').style.visibility = `hidden`;
+    if (target.matches('.popup') || target.matches('.close')) target.closest('.popup').style.visibility = `hidden`;
   });
 };
 
