@@ -2,7 +2,8 @@ const togglePopups = () => {
   const popupDialogMenu = document.querySelector('.popup-dialog-menu'),
     popup = popupDialogMenu.closest('.popup'),
     popupRepairTypes = document.querySelector('.popup-repair-types'),
-    popupPrivacy = document.querySelector('.popup-privacy');
+    popupPrivacy = document.querySelector('.popup-privacy'),
+    popupConsultation = document.querySelector('.popup-consultation');
 
   document.documentElement.addEventListener('click', event => {
     const target = event.target;
@@ -15,10 +16,9 @@ const togglePopups = () => {
       popup.style.visibility = `hidden`;
     }
 
-    if (target.matches('.link-list, .link-list a')) {
-      popupRepairTypes.style.visibility = `visible`;
-    }
+    if (target.matches('.link-list, .link-list a')) popupRepairTypes.style.visibility = `visible`;
     if (target.matches('.link-privacy')) popupPrivacy.style.visibility = `visible`;
+    if (target.matches('.button_wide')) popupConsultation.style.visibility = `visible`;
     if (target.matches('.popup') || target.matches('.close')) target.closest('.popup').style.visibility = `hidden`;
   });
 };
