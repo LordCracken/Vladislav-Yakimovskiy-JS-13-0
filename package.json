@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.10.4",
+    "date-polyfill": "^1.0.20",
     "dom-node-polyfills": "^1.0.0",
     "element-closest-polyfill": "^1.0.0",
     "es6-promise": "^4.2.8",

@@ -10,6 +10,7 @@ import 'nodelist-foreach-polyfill';
 import 'formdata-polyfill';
 import 'es6-promise';
 import 'fetch-polyfill';
+import 'date-polyfill';
 
 import togglePopups from './modules/togglePopups';
 import smoothScroll from './modules/smoothScroll';
