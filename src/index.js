@@ -17,6 +17,7 @@ import maskPhone from './modules/maskPhone';
 import showAdditionalPhone from './modules/showAdditionalPhone';
 import sendForm from './modules/sendForm';
 import formValidate from './modules/formValidate';
+import servicesListData from './modules/servicesListData';
 
 togglePopups();
 smoothScroll();
@@ -24,3 +25,4 @@ showAdditionalPhone();
 sendForm();
 maskPhone(`[name='phone']`);
 formValidate();
+servicesListData();

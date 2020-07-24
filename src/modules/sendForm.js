@@ -38,6 +38,7 @@ const sendForm = () => {
         statusMessage.textContent = ``;
         popupThank.style.visibility = `visible`;
         event.target.reset();
+        setTimeout(() => popupThank.style.visibility = `hidden`, 3000);
       })
       .catch(error => {
         console.error(error);
