@@ -8,7 +8,7 @@ const servicesListData = () => {
     .then(data => data)
     .then(data => {
       const dataDate = data[0]['date'].split('.');
-      const date = new Date(`${dataDate[2]}-${+dataDate[1]}-${dataDate[0]}`);
+      const date = new Date(`${dataDate[2]}-${dataDate[1]}-${dataDate[0]}`);
       const repairTypesDateMessage = repairTypesDate.querySelector('i').cloneNode(true);
       repairTypesDate.textContent = `${date.getDate()} ${date.getMonth() === 2 || date.getMonth() === 7 ?
         date.toLocaleString('ru', { month: 'long' }) + 'а' :  date.toLocaleString('ru', { month: 'long' }).slice(0, -1) + 'я'} 
