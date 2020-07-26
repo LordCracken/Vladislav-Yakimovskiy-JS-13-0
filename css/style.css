@@ -3134,13 +3134,6 @@ div.wave-block:nth-child(17):after {
 .problems-item-popup-1 {
   min-height: 344px;
   padding-top: 35px;
-  top: 245px;
-}
-
-@media (min-width: 1025px) {
-  .problems-item-popup-1 {
-    top: 140px;
-  }
 }
 
 @media (max-width: 575px) {
@@ -3158,8 +3151,6 @@ div.wave-block:nth-child(17):after {
   content: '';
   background: url("../images/problems/popup_bg_1.svg") no-repeat;
   background-size: contain;
-  -webkit-transform: rotate(180deg);
-  transform: rotate(180deg);
   z-index: -1;
 }
 
@@ -8662,6 +8653,27 @@ div.wave-block:nth-child(17):after {
   box-shadow: 0 8px 40px rgba(254, 171, 23, 0.2);
 }
 
+.active-item .problems-item__icon-inner {
+  opacity: 1;
+}
+
+.active-item .problems-item__icon svg {
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  margin-top: 2px;
+}
+
+.active-item .problems-item__icon svg path {
+  fill: #ffffff;
+}
+
+.active-item .problems-item-popup {
+  visibility: visible;
+  opacity: 1;
+}
+
 @media (max-width: 575px) {
   .active-item .problems-item__icon {
     width: 48px;
@@ -9597,4 +9609,9 @@ form {
 
 #feedback2>.form-status-message, #feedback5>.form-status-message, #feedback4>.form-status-message {
   bottom: 30px;
+}
+
+.popup-roll::before {
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
 }

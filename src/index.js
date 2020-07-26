@@ -10,7 +10,6 @@ import 'nodelist-foreach-polyfill';
 import 'formdata-polyfill';
 import 'es6-promise';
 import 'fetch-polyfill';
-import 'date-polyfill';
 
 import togglePopups from './modules/togglePopups';
 import smoothScroll from './modules/smoothScroll';
@@ -19,6 +18,7 @@ import showAdditionalPhone from './modules/showAdditionalPhone';
 import sendForm from './modules/sendForm';
 import formValidate from './modules/formValidate';
 import servicesListData from './modules/servicesListData';
+import tooltips from './modules/tooltips';
 
 togglePopups();
 smoothScroll();
@@ -27,3 +27,5 @@ sendForm();
 maskPhone(`[name='phone']`);
 formValidate();
 servicesListData();
+tooltips('.problems-item');
+tooltips('.formula-item');
