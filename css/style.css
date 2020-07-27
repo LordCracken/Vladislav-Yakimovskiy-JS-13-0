@@ -1119,10 +1119,16 @@ template,
   margin-top: 102px;
 }
 
+@media (max-width: 1024px) {
+  .formula-slider {
+    min-height: 400px;
+    margin-top: 52px;
+  }
+}
+
 @media (max-width: 575px) {
   .formula-slider {
     min-height: 265px;
-    margin-top: 52px;
   }
 }
 
@@ -1132,6 +1138,8 @@ template,
   margin-right: auto;
   opacity: 0.4;
   font-size: 18px;
+  margin-top: 0;
+  margin-bottom: 200px;
 }
 
 .formula-slider__slide:before {
@@ -9614,4 +9622,21 @@ form {
 .popup-roll::before {
   -webkit-transform: rotate(180deg);
   transform: rotate(180deg);
+}
+
+.crack-slider {
+  overflow: hidden;
+}
+
+.crack-slider__wrap {
+  display: flex;
+  align-items: center;
+  transition: transform 0.5s;
+  will-change: transform;
+}
+
+.crack-slider__item {
+  flex: 0 0 33%;
+  margin-right: 0;
+  margin-left: 0;
 }

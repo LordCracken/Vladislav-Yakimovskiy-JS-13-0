@@ -19,6 +19,9 @@ import sendForm from './modules/sendForm';
 import formValidate from './modules/formValidate';
 import servicesListData from './modules/servicesListData';
 import tooltips from './modules/tooltips';
+// import Slider from './modules/slider';
+import CarouselSlider from './modules/carouselSlider';
+import accordeon from './modules/accordeon';
 
 togglePopups();
 smoothScroll();
@@ -29,3 +32,13 @@ formValidate();
 servicesListData();
 tooltips('.problems-item');
 tooltips('.formula-item');
+accordeon();
+
+// const formulaSlider = new Slider('.formula-slider', '.formula-slider__slide', '#formula-arrow_left', '#formula-arrow_right', 'active-item');
+// formulaSlider.init();
+
+const formulaSlider = new CarouselSlider({
+  main: '.formula-slider-wrap',
+  wrap: '.formula-slider'
+});
+formulaSlider.init();
