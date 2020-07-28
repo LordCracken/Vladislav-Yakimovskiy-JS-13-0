@@ -4428,7 +4428,6 @@ div.wave-block:nth-child(17):after {
   margin-top: 125px;
   margin-left: auto;
   margin-right: auto;
-  overflow: visible !important;
 }
 
 @media (max-width: 1024px) {
@@ -4451,8 +4450,6 @@ div.wave-block:nth-child(17):after {
   text-align: center;
   color: #322823;
   min-height: 100%;
-  opacity: 0;
-  flex: 0 0 100%;
 }
 
 .reviews-slider__slide-img {
@@ -5060,7 +5057,6 @@ div.wave-block:nth-child(17):after {
   min-height: 150px;
   margin-left: auto;
   margin-right: auto;
-  flex: 0 0 50%;
 }
 
 @media (max-width: 1024px) {

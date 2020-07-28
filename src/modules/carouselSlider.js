@@ -1,88 +1,217 @@
-class CarouselSlider {
-  constructor({
-    main,
-    wrap,
-    next,
-    prev,
-    activeClass,
-    infinity = false,
-    position = 0,
-    slidesToShow = 1
-  }) {
-    this.prevClass = prev;
-    this.nextClass = next;
-
+export default class SliderCarousel {
+  constructor({ main, wrap, next, prev, position = 0, slidesToShow = 3,
+    infinity = false, responsive = [], styles, stylesId, styleClasses,
+    noAdaptiveStyles, buttons = true }) {
     this.main = document.querySelector(main);
     this.wrap = document.querySelector(wrap);
-    this.next = document.querySelector(next);
+    this.slides = [...this.wrap.children];
     this.prev = document.querySelector(prev);
-    this.slides = document.querySelector(wrap).children;
+    this.next = document.querySelector(next);
     this.slidesToShow = slidesToShow;
+    this.responsive = responsive;
+    this.stylesId = stylesId;
+    this.noAdaptiveStyles = noAdaptiveStyles;
+    this.styles = styles;
+    this.buttons = buttons;
     this.options = {
       position,
+      widthSlide: Math.floor(100 / this.slidesToShow),
       infinity,
-      widthSlide: Math.floor(100 / this.slidesToShow)
+      maxPosition: this.slides.length - this.slidesToShow,
+      styleClasses
     };
-    this.activeClass = activeClass;
   }
 
   init() {
-    this.addCrackClass();
-    this.controlSlider();
-    if (this.responsive) this.responseInit();
-    this.addActiveClass();
-    this.addInfSlides();
-  }
-
-  addCrackClass() {
-    this.main.classList.add('crack-slider');
-    this.wrap.classList.add('crack-slider__wrap');
-    for (const item of this.slides) item.classList.add('crack-slider__item');
-  }
-
-  addActiveClass() {
-    if (this.activeClass) {
-      for (const item of this.slides) {
-        item === this.slides[this.options.position] ?
-          item.classList.add(this.activeClass.slice(1)) :
-          item.classList.remove(this.activeClass.slice(1));
+    try {
+      this.addGloClass();
+      this.addStyle();
+      if (!this.prev && !this.next && this.buttons) this.addArrow();
+      if (this.buttons) {
+        this.controlSlider();
+        this.prev.style.visibility = 'hidden';
       }
+
+      if (this.responsive.length) this.responseInit();
+
+    } catch {
+      console.error('Возникла ошибка при инициализации.');
     }
   }
 
+  responseInit() {
+    const slidesToShowDefault = this.slidesToShow;
+    this.responsive.sort((a, b) => b.breakpoint - a.breakpoint);
+    const allResponse = this.responsive.map(item => item.breakpoint);
+    const maxResponse = Math.max(...allResponse);
+
+    const checkResponse = () => {
+      const widthWindow = document.documentElement.clientWidth;
+      if (widthWindow < maxResponse) {
+        this.responsive.forEach((response, index) => {
+          if (widthWindow < response.breakpoint) {
+            this.slidesToShow = this.responsive[index].slideToShow;
+            this.options.widthSlide = Math.floor(100 / this.slidesToShow);
+            this.options.maxPosition = this.slides.length - this.slidesToShow;
+            this.addStyle();
+          }
+        });
+      } else {
+        this.slidesToShow = slidesToShowDefault;
+        this.options.widthSlide = Math.floor(100 / this.slidesToShow);
+        this.options.maxPosition = this.slides.length - this.slidesToShow;
+        this.addStyle();
+      }
+    };
+
+    checkResponse();
+
+    window.addEventListener('resize', checkResponse);
+  }
+
+  addGloClass() {
+    const styleClasses = this.options.styleClasses;
+    this.main.classList.add(styleClasses.main);
+    this.wrap.classList.add(styleClasses.wrap);
+    this.slides.forEach(slide => slide.classList.add(styleClasses.item));
+  }
+
+  addStyle() {
+    let style = document.getElementById(this.stylesId);
+    const styleClasses = this.options.styleClasses;
+    if (!style) {
+      style = document.createElement('style');
+      style.id = this.stylesId;
+    }
+
+    if (this.noAdaptiveStyles) {
+      style.textContent = this.noAdaptiveStyles;
+    } else {
+      style.textContent = `
+			.${styleClasses.main} {
+				overflow: hidden !important;
+			}
+		
+			.${styleClasses.wrap} {
+				display: flex !important;
+				transition: transform 0.5s !important;
+				will-change: transform !important;
+			}
+		
+			.${styleClasses.item} {
+				display: flex !important;
+				align-items: center !important;
+				justify-content: center !important; 
+				margin: 0 auto !important;
+				flex: 0 0 ${this.options.widthSlide}% !important;
+			}
+			
+			${this.styles ? this.styles : ''}
+			`;
+    }
+
+    document.head.append(style);
+  }
+
   controlSlider() {
-    this.main.addEventListener('click', e => {
-      if (e.target.closest(this.prevClass) === this.prev) this.prevSlider();
-      if (e.target.closest(this.nextClass) === this.next) this.nextSlider();
-      this.addActiveClass();
-    });
+    if (!this.added) {
+      this.added = true;
+      this.prev.addEventListener('click', this.prevSlider.bind(this));
+      this.next.addEventListener('click', this.nextSlider.bind(this));
+    }
   }
 
   prevSlider() {
-    if (this.options.position >= 0) {
+    const infinityType = this.options.infinity;
+    if (infinityType) {
+
+      if (infinityType === 'return') {
+        if (this.options.position > 0) {
+          --this.options.position;
+          this.wrap.style.transform = `translateX(-${this.options.position * this.options.widthSlide}%)`;
+        } else {
+          this.options.position = this.options.maxPosition;
+          this.wrap.style.transform = `translateX(-${this.options.position * this.options.widthSlide}%)`;
+        }
+        return;
+      }
+
+      return;
+    }
+
+    if (this.options.position > 0) {
       --this.options.position;
-      this.addInfSlides();
       this.wrap.style.transform = `translateX(-${this.options.position * this.options.widthSlide}%)`;
+      this.next.style.visibility = '';
+      if (this.options.position === 0) this.prev.style.visibility = 'hidden';
+
     }
   }
 
   nextSlider() {
-    if (this.options.position < this.slides.length) {
+    const infinityType = this.options.infinity;
+    if (infinityType) {
+
+      if (infinityType === 'return') {
+        if (this.options.position < this.options.maxPosition) {
+          ++this.options.position;
+          this.wrap.style.transform = `translateX(-${this.options.position * this.options.widthSlide}%)`;
+        } else {
+          this.options.position = 0;
+          this.wrap.style.transform = `translateX(-${this.options.position * this.options.widthSlide}%)`;
+        }
+        return;
+      }
+
+      return;
+    }
+
+    if (this.options.position < this.options.maxPosition) {
       ++this.options.position;
-      this.addInfSlides();
       this.wrap.style.transform = `translateX(-${this.options.position * this.options.widthSlide}%)`;
+      this.prev.style.visibility = '';
+      if (this.options.position === this.options.maxPosition) this.next.style.visibility = 'hidden';
     }
   }
 
-  addInfSlides() {
-    if (this.options.infinity) {
-      if (this.options.position < 0) {
-        this.options.position = this.slides.length - 1;
-      } else if (this.options.position > this.slides.length - this.slidesToShow) {
-        this.options.position = 0;
-      }
-    }
+  addArrow() {
+    const styleClasses = this.options.styleClasses;
+
+    this.prev = document.createElement('button');
+    this.next = document.createElement('button');
+
+    this.next.className = styleClasses.prev;
+    this.prev.className = styleClasses.next;
+
+    const style = document.createElement('style');
+    style.textContent = `
+        .${styleClasses.prev},
+        .${styleClasses.next} {
+          margin: 0 10px !important;
+          border: 20px solid transparent !important; 
+          background: transparent !important;
+        }
+  
+        .${styleClasses.prev} {
+          border-right-color: #19bbfe !important;
+        }
+        
+        .${styleClasses.next} {
+          border-left-color: #19bbfe !important;
+        }
+  
+        .${styleClasses.prev}:hover,
+        .${styleClasses.next}:hover,
+        .${styleClasses.prev}:focus,
+        .${styleClasses.next}:focus {
+          background: transparent !important;
+          outline: transparent !important;
+        }
+  
+      `;
+
+    this.main.append(this.prev);
+    this.main.append(this.next);
+    document.head.append(style);
   }
 }
-
-export default CarouselSlider;

@@ -19,9 +19,15 @@ import sendForm from './modules/sendForm';
 import formValidate from './modules/formValidate';
 import servicesListData from './modules/servicesListData';
 import tooltips from './modules/tooltips';
-// import Slider from './modules/slider';
-import CarouselSlider from './modules/carouselSlider';
 import accordeon from './modules/accordeon';
+import repairTypesSlider from './modules/repaitTypesSlider';
+import problemsSlider from './modules/problemsSlider';
+import formulaSlider from './modules/formulaSlider';
+import partnersSlider from './modules/partnersSlider';
+import reviewsSlider from './modules/reviewsSlider';
+import portfolioSlider from './modules/portfolioSlider';
+import schemeSliderTabs from './modules/schemeSliderTabs';
+import schemeSliderContent from './modules/schemeSliderContent';
 
 togglePopups();
 smoothScroll();
@@ -34,47 +40,11 @@ tooltips('.problems-item');
 tooltips('.formula-item');
 accordeon();
 
-// const formulaSlider = new Slider('.formula-slider', '.formula-slider__slide', '#formula-arrow_left', '#formula-arrow_right', 'active-item');
-// formulaSlider.init();
-
-const formulaSlider = new CarouselSlider({
-  main: '.formula-slider-wrap',
-  wrap: '.formula-slider',
-  prev: '#formula-arrow_left',
-  activeClass: '.active-item',
-  next: '#formula-arrow_right',
-  infinity: true
-});
-formulaSlider.init();
-
-const problemsSlider = new CarouselSlider({
-  main: '.problems-slider-wrap',
-  wrap: '.problems-slider',
-  prev: '#problems-arrow_left',
-  activeClass: '.active-item',
-  next: '#problems-arrow_right',
-  infinity: true
-});
-problemsSlider.init();
-
-const reviewsSlider = new CarouselSlider({
-  main: '.reviews-slider-wrap',
-  wrap: '.reviews-slider',
-  prev: '#reviews-arrow_left',
-  next: '#reviews-arrow_right',
-  activeClass: '.active-item',
-  infinity: true,
-  slidesToShow: 1
-});
-reviewsSlider.init();
-
-const partnersSlider = new CarouselSlider({
-  main: '.partners .wrapper',
-  wrap: '.partners-slider',
-  prev: '#partners-arrow_left',
-  next: '#partners-arrow_right',
-  activeClass: '.active-item',
-  infinity: true,
-  slidesToShow: 2
-});
-partnersSlider.init();
+formulaSlider();
+problemsSlider();
+repairTypesSlider();
+portfolioSlider();
+schemeSliderTabs();
+schemeSliderContent();
+reviewsSlider();
+partnersSlider();
