@@ -1134,13 +1134,20 @@ template,
 
 .formula-slider__slide {
   position: relative;
+  flex: 0 0 100%;
   margin-left: auto;
   margin-right: auto;
   opacity: 0.4;
   font-size: 18px;
   margin-top: 0;
-  margin-bottom: 200px;
+  margin-bottom: 240px;
 }
+
+/* @media (max-width: 864px) {
+  .formula-slider__slide {
+    flex: 0 0 100%;
+  }
+} */
 
 .formula-slider__slide:before {
   position: absolute;
@@ -2976,7 +2983,15 @@ div.wave-block:nth-child(17):after {
 
 @media (max-width: 1024px) {
   .problems-item {
-    max-width: 340px;
+    flex: 0 0 100%;
+    margin-bottom: 500px;
+    max-width: initial;
+  }
+}
+
+@media (max-width: 575px) {
+  .problems-item {
+    margin-bottom: 350px;
   }
 }
 
@@ -4405,7 +4420,6 @@ div.wave-block:nth-child(17):after {
 
 .reviews-slider {
   height: 314px;
-  overflow: hidden;
 }
 
 .reviews-slider-wrap {
@@ -4414,6 +4428,7 @@ div.wave-block:nth-child(17):after {
   margin-top: 125px;
   margin-left: auto;
   margin-right: auto;
+  overflow: visible !important;
 }
 
 @media (max-width: 1024px) {
@@ -4436,6 +4451,8 @@ div.wave-block:nth-child(17):after {
   text-align: center;
   color: #322823;
   min-height: 100%;
+  opacity: 0;
+  flex: 0 0 100%;
 }
 
 .reviews-slider__slide-img {
@@ -5043,11 +5060,11 @@ div.wave-block:nth-child(17):after {
   min-height: 150px;
   margin-left: auto;
   margin-right: auto;
+  flex: 0 0 50%;
 }
 
 @media (max-width: 1024px) {
   .partners-slider__slide {
-    max-width: 114px;
     min-height: auto;
   }
 
@@ -5061,7 +5078,6 @@ div.wave-block:nth-child(17):after {
 
 @media (max-width: 575px) {
   .partners-slider__slide {
-    max-width: 134px;
     min-height: auto;
   }
 
@@ -9636,7 +9652,6 @@ form {
 }
 
 .crack-slider__item {
-  flex: 0 0 33%;
   margin-right: 0;
   margin-left: 0;
 }

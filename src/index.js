@@ -39,6 +39,42 @@ accordeon();
 
 const formulaSlider = new CarouselSlider({
   main: '.formula-slider-wrap',
-  wrap: '.formula-slider'
+  wrap: '.formula-slider',
+  prev: '#formula-arrow_left',
+  activeClass: '.active-item',
+  next: '#formula-arrow_right',
+  infinity: true
 });
 formulaSlider.init();
+
+const problemsSlider = new CarouselSlider({
+  main: '.problems-slider-wrap',
+  wrap: '.problems-slider',
+  prev: '#problems-arrow_left',
+  activeClass: '.active-item',
+  next: '#problems-arrow_right',
+  infinity: true
+});
+problemsSlider.init();
+
+const reviewsSlider = new CarouselSlider({
+  main: '.reviews-slider-wrap',
+  wrap: '.reviews-slider',
+  prev: '#reviews-arrow_left',
+  next: '#reviews-arrow_right',
+  activeClass: '.active-item',
+  infinity: true,
+  slidesToShow: 1
+});
+reviewsSlider.init();
+
+const partnersSlider = new CarouselSlider({
+  main: '.partners .wrapper',
+  wrap: '.partners-slider',
+  prev: '#partners-arrow_left',
+  next: '#partners-arrow_right',
+  activeClass: '.active-item',
+  infinity: true,
+  slidesToShow: 2
+});
+partnersSlider.init();
