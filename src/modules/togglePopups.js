@@ -20,8 +20,8 @@ const togglePopups = () => {
     if (target.matches('.link-list, .link-list a')) popupRepairTypes.style.visibility = `visible`;
     if (target.matches('.link-privacy')) popupPrivacy.style.visibility = `visible`;
     if (target.matches('.button_wide')) popupConsultation.style.visibility = `visible`;
-    if (target.matches('.popup') || target.matches('.close')) target.closest('.popup').style.visibility = `hidden`;
     if (target.matches('.link-list-designs a')) popupDesign.style.visibility = `visible`;
+    if (target.matches('.popup') || target.matches('.close')) target.closest('.popup').style.visibility = `hidden`;
   });
 };
 

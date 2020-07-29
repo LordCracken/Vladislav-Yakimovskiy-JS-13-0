@@ -19,14 +19,13 @@ const toggleTransparency = () => {
 
   }));
 
-  popup.addEventListener('click', evt => {
-    const target = evt.target;
-    if (target.closest('.close')) {
-      popup.style.visibility = 'hidden';
+  popup.addEventListener('click', event => {
+    const target = event.target;
+    if (target.matches('.popup') || target.matches('.close')) {
+      target.closest('.popup').style.visibility = `hidden`;
       prev.style.visibility = 'hidden';
       next.style.visibility = 'hidden';
     }
-
 
   });
 };
