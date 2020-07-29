@@ -30,8 +30,8 @@ const schemeSliderContent = () => {
     });
   };
 
-  buttonHolder.addEventListener('click', evt => {
-    const target = evt.target.closest('#scheme-list .scheme-nav__item');
+  buttonHolder.addEventListener('click', event => {
+    const target = event.target.closest('#scheme-list .scheme-nav__item');
     if (!target) return;
 
     buttons.forEach((button, index) => {

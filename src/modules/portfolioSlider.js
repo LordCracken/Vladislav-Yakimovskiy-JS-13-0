@@ -1,7 +1,6 @@
 import CarouselSlider from './carouselSlider';
 
 const portfolioSlider = () => {
-  // desktop
   const desktopSlider = new CarouselSlider({
     main: '.wrapper-main-for-portfolio-desktop-slider',
     wrap: '.portfolio-slider',
@@ -59,8 +58,6 @@ const portfolioSlider = () => {
     document.head.append(style);
   };
 
-
-
   desktopSlider.prevSlider = function() {
     if (this.options.position > 0) {
       --this.options.position;
@@ -93,7 +90,6 @@ const portfolioSlider = () => {
 
   desktopSlider.init();
 
-  // mobile
   const current = document.querySelector('#portfolio-counter .slider-counter-content__current'),
     total = document.querySelector('#portfolio-counter .slider-counter-content__total');
 

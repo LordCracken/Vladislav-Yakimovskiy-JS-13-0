@@ -48,9 +48,6 @@ const sliderProblems = () => {
     }
   };
 
-
-
-
   slider.init();
 };
 

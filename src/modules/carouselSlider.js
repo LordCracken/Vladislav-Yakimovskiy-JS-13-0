@@ -23,20 +23,15 @@ export default class SliderCarousel {
   }
 
   init() {
-    try {
-      this.addGloClass();
-      this.addStyle();
-      if (!this.prev && !this.next && this.buttons) this.addArrow();
-      if (this.buttons) {
-        this.controlSlider();
-        this.prev.style.visibility = 'hidden';
-      }
-
-      if (this.responsive.length) this.responseInit();
-
-    } catch {
-      console.error('Возникла ошибка при инициализации.');
+    this.addCrackClass();
+    this.addStyle();
+    if (!this.prev && !this.next && this.buttons) this.addArrow();
+    if (this.buttons) {
+      this.controlSlider();
+      this.prev.style.visibility = 'hidden';
     }
+
+    if (this.responsive.length) this.responseInit();
   }
 
   responseInit() {
@@ -69,7 +64,7 @@ export default class SliderCarousel {
     window.addEventListener('resize', checkResponse);
   }
 
-  addGloClass() {
+  addCrackClass() {
     const styleClasses = this.options.styleClasses;
     this.main.classList.add(styleClasses.main);
     this.wrap.classList.add(styleClasses.wrap);
@@ -95,7 +90,6 @@ export default class SliderCarousel {
 			.${styleClasses.wrap} {
 				display: flex !important;
 				transition: transform 0.5s !important;
-				will-change: transform !important;
 			}
 		
 			.${styleClasses.item} {

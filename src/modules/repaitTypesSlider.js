@@ -128,7 +128,6 @@ const repairTypesSlider = () => {
       ++this.options.position;
       this.buff = this.slidesToShow * 10 + (this.slidesToShow >= 2.5 ? -2 : 10);
       if (this.options.position === Math.round(this.options.maxPosition)) {
-        // eslint-disable-next-line max-len
         this.wrap.style.transform = `translateX(-${this.options.position * this.options.widthSlide + this.buff}%)`;
       } else	this.wrap.style.transform = `translateX(-${this.options.position * this.options.widthSlide}%)`;
       this.prev.style.visibility = '';
@@ -140,7 +139,6 @@ const repairTypesSlider = () => {
 
   const slideders = [...document.querySelector('.repair-types-slider').children];
 
-  // основной слайдер
   const total = document.querySelector('#repair-counter .slider-counter-content__total');
   const current = document.querySelector('#repair-counter .slider-counter-content__current');
 
@@ -238,8 +236,8 @@ const repairTypesSlider = () => {
 
   toggleTabContent(0);
 
-  tabHeader.addEventListener('click', evt => {
-    let target = evt.target;
+  tabHeader.addEventListener('click', event => {
+    let target = event.target;
     target = target.closest('.repair-types-nav__item');
 
     if (target) {
