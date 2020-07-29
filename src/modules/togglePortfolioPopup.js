@@ -73,15 +73,15 @@ const togglePortfolioPopup = () => {
     desktopSlides = document.querySelectorAll('.js-portfolio-desktop_item-slider .portfolio-slider__slide-frame'),
     desktopSliderHolder = document.querySelector('.js-portfolio-desktop-wrap-slider');
 
-  mobileSliderHolder.addEventListener('click', event => {
-    const target = event.target.closest('.portfolio-slider__slide-frame');
-    if (target) popupPortfolio.style.visibility = 'visible';
-    mobileSlides.forEach((slide, index) => {
-      if (slide === target) {
-        slider.toggleTabContent(index, slider.slides, true);
-      }
-    });
-  });
+  // mobileSliderHolder.addEventListener('click', event => {
+  //   const target = event.target.closest('.portfolio-slider__slide-frame');
+  //   if (target) popupPortfolio.style.visibility = 'visible';
+  //   mobileSlides.forEach((slide, index) => {
+  //     if (slide === target) {
+  //       slider.toggleTabContent(index, slider.slides, true);
+  //     }
+  //   });
+  // });
 
   desktopSliderHolder.addEventListener('click', event => {
     const target = event.target.closest('.portfolio-slider__slide-frame');

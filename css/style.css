@@ -2347,9 +2347,9 @@ div.wave-block:nth-child(17):after {
 }
 
 .portfolio-slider__slide-frame:before {
-  position: absolute;
+  /* position: absolute;
   top: 0;
-  left: 0;
+  left: 0; */
   content: '';
   width: 100%;
   height: 100%;

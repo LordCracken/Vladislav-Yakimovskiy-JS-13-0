@@ -44,11 +44,13 @@ const designSliderPopup = () => {
 			
 				.${styleClasses.wrap} {
 					display: flex !important;
+          display: -ms-flexbox !important;
 					transition: transform 0.5s !important;
 				}
 			
 				.${styleClasses.item} {
 					display: flex !important;
+          display: -ms-flexbox !important;
 					align-items: center !important;
 					margin: 0 auto !important;
 					justify-content: center !important;
@@ -101,13 +103,23 @@ const designSliderPopup = () => {
 			}
 			
 			.${styleClasses.wrap} {
+        display: -webkit-box !important;
+				display: -ms-flexbox !important;
 				display: flex !important;
-				flex-direction: column !important;
+				-webkit-box-orient: vertical !important;
+				-webkit-box-direction: normal !important;
+				-ms-flex-direction: column !important;
+				        flex-direction: column !important;
+				-webkit-transition: -webkit-transform 0.5s !important;
+				transition: -webkit-transform 0.5s !important;
+				-o-transition: transform 0.5s !important;
 				transition: transform 0.5s !important;
+				transition: transform 0.5s, -webkit-transform 0.5s !important;
 			}
 		
 			.${styleClasses.item} {
-				display: flex !important;
+        display: flex !important;
+        display: -ms-flexbox !important;
 				margin: 0 auto !important;
 				flex: 0 0 ${this.options.widthSlide}% !important;
 				height: 100%;

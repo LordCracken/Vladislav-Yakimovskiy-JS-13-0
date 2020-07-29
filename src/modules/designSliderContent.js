@@ -33,7 +33,9 @@ const designSliderContent = () => {
 			
 			.${styleClasses.wrap} {
 				display: flex !important;
+        display: -ms-flexbox !important;
 				flex-direction: column !important;
+				-ms-flex-direction: column !important;
 				transition: transform 0.5s !important;
 			}
 		

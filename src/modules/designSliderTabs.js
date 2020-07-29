@@ -44,7 +44,8 @@ const designSliderTabs = () => {
 				}
 			
 				.${styleClasses.wrap} {
-					display: flex !important;
+          display: flex !important;
+          display: -ms-flexbox !important;
 					transition: transform 0.5s !important;
 				}
 			
