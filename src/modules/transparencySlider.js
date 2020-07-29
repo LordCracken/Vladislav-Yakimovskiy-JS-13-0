@@ -34,7 +34,6 @@ const transparencySlider = () => {
 				.js-transparency-wrap-slider {
 					display: flex !important;
 					transition: transform 0.5s !important;
-					will-change: transform !important;
 				}
 			
 				.js-transparency-slider__item {

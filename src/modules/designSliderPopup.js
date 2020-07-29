@@ -45,7 +45,6 @@ const designSliderPopup = () => {
 				.${styleClasses.wrap} {
 					display: flex !important;
 					transition: transform 0.5s !important;
-					will-change: transform !important;
 				}
 			
 				.${styleClasses.item} {
@@ -105,7 +104,6 @@ const designSliderPopup = () => {
 				display: flex !important;
 				flex-direction: column !important;
 				transition: transform 0.5s !important;
-				will-change: transform !important;
 			}
 		
 			.${styleClasses.item} {
@@ -116,7 +114,7 @@ const designSliderPopup = () => {
 				transition: 0.5s;
 			}
 			.js-designs-slider-wrap-slider {
-				overflow: unset;
+				overflow: visible;
 			}
 		`;
 

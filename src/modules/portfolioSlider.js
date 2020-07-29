@@ -39,8 +39,8 @@ const portfolioSlider = () => {
 			.${styleClasses.wrap} {
 				display: flex !important;
 				transition: transform 0.5s !important;
-				will-change: transform !important;
-				overflow: unset !important;
+				 !important;
+				overflow: visible !important;
 			}
 			.${styleClasses.item} {
 				display: flex !important;
@@ -113,8 +113,7 @@ const portfolioSlider = () => {
 				.js-portfolio-mobile-wrap-slider {
 					display: flex !important;
 					transition: transform 0.5s !important;
-					will-change: transform !important;
-					overflow: unset !important;
+					overflow: visible !important;
 				}
 				.js-portfolio-mobile__item-slider {
 					display: flex !important;
